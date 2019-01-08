@@ -1,0 +1,268 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    
+    <h:head>
+        <h:outputStylesheet name="style.css" />
+        <h:outputStylesheet name="css/animate.css" />
+        <h:outputStylesheet name="css/animate2.css" />
+        <h:outputStylesheet name="css/layout.css" />
+        <h:outputStylesheet name="css/layout2.css" />
+        <h:outputStylesheet name="css/nanoscroller.css" />
+        <h:outputStylesheet name="css/nanoscroller2.css" />
+        <h:outputStylesheet name="theme.css" />
+        <h:outputStylesheet name="components.css" />
+        <h:outputStylesheet name="fa/font-awesome.css" />
+        
+        
+        <h:outputScript  name = "jquery/jquery.js" />
+        <h:outputScript  name = "jquery/jquery2.js" />
+        <h:outputScript  name = "jquery/jquery-plugins.js" />
+        <h:outputScript  name = "jquery/jquery-plugins2.js" />
+        <h:outputScript  name = "core.js" />
+        <h:outputScript  name = "components.js" />
+        <h:outputScript  name = "components2.js" />
+        
+        <h:outputScript  name = "js/layout.js" />
+        <h:outputScript  name = "js/nanoscroller.js" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+        <title>Sodigaz APC</title>
+        
+     </h:head>
+   
+
+    <h:body class="main-body menu-layout-static">
+
+        <div class="wrapper">
+
+        <div class="topbar clearfix">
+            <a id="omega-menu-button" href="#">
+                <span class="fa fa-bars"></span>
+            </a>
+            
+            <span class="topbar-title">Acceuil</span>
+            
+            <a id="options-menu-button" href="#">
+                <span class="fa fa-ellipsis-h"></span>
+            </a>
+            
+            <div id="topbar-icons" class="animated">
+                <span class="topbar-search">
+                    <input type="text" placeholder="Search" />
+                    <span class="topbar-search-icon fa fa-search"></span>
+                </span>
+                <a href="#">
+                    <span class="topbar-item-text">Messages</span>
+                    <span class="topbar-icon fa fa-envelope-o animated swing"></span>
+                    <span class="topbar-badge animated rubberBand">5</span>
+                </a>
+                <a href="#">
+                    <span class="topbar-item-text">Settings</span>
+                    <span class="topbar-icon fa fa-gear"></span>
+                </a>
+                <a href="#">
+                    <span class="topbar-item-text">User</span>
+                    <span class="topbar-icon fa fa-user"></span>
+                </a>
+            </div>
+            
+        </div>
+        <form id="menuform" name="menuform" method="post" action="https://www.primefaces.org/omega/dashboard.xhtml;jsessionid=node0enek356dadt6df9lj7zx928h443237.node0" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="menuform" value="menuform" />
+
+            <div class="sidebar">
+                <div class="nano">
+                    <div class="nano-content sidebar-scroll-content">
+                        <div class="logo">
+                            <p:graphicImage  name="/images/logo.png" width="113"/>
+                        </div>
+
+                        <div class="profile">
+                            <p:graphicImage  name="/images/profile.png" width="113"/>
+                            <a id="profile-button" href="#">
+                                <span class="username">Traore Fatim</span>
+                                <i class="fa fa-fw fa-cog"></i>
+                            </a>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-fw fa-sliders"></i><span>Account</span></a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Notifications</span><span class="menu-badge">2</span></a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-sign-out"></i><span>Logout</span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="menu">
+
+                            <ul id="menuform:j_idt18" class="menu-container">
+                                    <li id="menuform:om_dashboard" role="menuitem">
+                                        <a href="dashboard.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-home fa-fw"></i>
+                                        <span>Acceuil</span>
+                                        </a>
+                                    </li>
+                                
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-search"></i>
+                                            <span>Inspection</span>
+                                        </a>
+                                    </li>
+
+                                     
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-times fa-fw"></i>
+                                            <span>Suspensions</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-wrench fa-fw"></i>
+                                            <span>Reparations</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-suitcase"></i>
+                                            <span>Alertes</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i>
+                                        <span>Administration</span><i class="fa fa-fw fa-angle-down"></i></a>
+                                        <ul role="menu">
+                                        <li id="menuform:om_empty" role="menuitem"><a href="empty.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-square-o fa-fw"></i><span>Pannes</span></a>
+                                        </li>
+                                        <li id="menuform:om_login" role="menuitem"><a href="login.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-sign-in fa-fw"></i>
+                                        <span>Livreur</span></a></li>
+                                        <li id="menuform:om_error" role="menuitem"><a href="error.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-exclamation-circle fa-fw"></i>
+                                        <span>Controleur</span></a></li>
+                                        <li id="menuform:om_404" role="menuitem"><a href="404.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-times fa-fw"></i>
+                                        <span>Camion</span></a></li>
+                                
+                                </ul>
+                            </li>
+
+                            <li id="menuform:om_doc" role="menuitem">
+                                <a href="${facesContext.externalContext.requestContextPath}/faces/test/default.xhtml"><i class="fa fa-book fa-fw"></i>
+                                <span>Documentation</span>
+                                </a>
+                            </li>
+                </ul>
+                <script id="menuform:j_idt18_s" type="text/javascript">PrimeFaces.cw("Omega","widget_menuform_j_idt18",{id:"menuform:j_idt18"});</script>
+                        </div>
+                    </div>
+                </div>
+            </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="7894077782919283152:2597600198985788506" autocomplete="off" />
+        </form>
+
+        <div class="main">
+                
+            <div class="ui-g ui-fluid dashboard">
+         
+                <div class="ui-g-12 ui-md-12">
+
+                    <f:view>
+                        <h:form>
+                            <p:dataTable id="singleDT" var="panne" value="#{dtPanneView.pannes}" selectionMode="single" selection="#{dtPanneView.selectedpanne}" rowKey="#{panne.idpanne}" >
+
+                                     
+                                    <p:column headerText="Designation">
+                                        <h:outputText value="#{panne.designationpanne}" />
+                                    </p:column>
+
+                                    <p:column headerText="Peut faire une suspension">
+                                        <h:outputText value="#{panne.dosuspend}" />
+                                    </p:column>
+
+                                <f:facet name="footer">
+                                    
+                                    
+                                   
+                                    
+                                    <div class="ui-g">
+                                        <div class="ui-g-3">
+                                            <p:commandButton  process="singleDT" icon="fa fa-list" value="afficher"  oncomplete="PF('panneDialog').show()" />
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton   icon="fa fa-plus" value="ajouter" oncomplete="PF('newPanneDialog').show()"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton   icon="fa fa-edit" value="modifier"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                             <p:commandButton   icon="fa fa-remove" value="supprimer"/>
+                                        </div>
+                                       
+                                    </div>
+                                    
+                                </f:facet>
+                            </p:dataTable>
+                        </h:form>
+                    </f:view>
+                 
+                </div>
+                
+                
+
+            </div>
+            
+            <div class="footer">
+                
+                <p:graphicImage  name="/images/logo-colored.png" width="32"/>
+                
+                <span class="footer-text">Le gaz le plus proche de vous</span>
+            </div>
+        </div>
+
+        <div id="j_idt104" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <div id="j_idt104_start" style="display:none"><img id="j_idt105" src="javax.faces.resource/images/preloader.gif.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h44323797ad.gif?ln=omega-layout" alt="" style="width: 32px;" />
+            </div>
+            <div id="j_idt104_complete" style="display:none"></div>
+        </div>
+
+            <p:dialog header="Enregistrer une Panne" widgetVar="newPanneDialog" modal="true"  showEffect="fade" hideEffect="fade"  resizable="false">
+                        <p:outputPanel id="newPanneDialog" style="text-align:center;">
+
+                            <p:panelGrid columns="2"  >
+
+                                <p:outputLabel   value="Type Panne" />
+                                <p:selectOneMenu id="console" value="#{selectOneMenuView.console}" style="width:125px">
+                                    <f:selectItem itemLabel="Electricite" itemValue="" />
+                                    <f:selectItem itemLabel="Cabine" itemValue="Xbox One" />
+                                    <f:selectItem itemLabel="Essieux" itemValue="PS4" />
+                                    <f:selectItem itemLabel="Cabine" itemValue="Wii U" />
+                                </p:selectOneMenu>
+
+                                <h:outputLabel for="designationPanne" value="designation" />
+                                <p:inputText id="designation"  required="true" label="designation" />
+
+                                <p:outputLabel   value="Suspension immediat " />
+                                <p:selectBooleanCheckbox  />
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Enregistrer"  />
+                                </f:facet>  
+                            </p:panelGrid>
+
+                        </p:outputPanel>
+                    </p:dialog>   
+            
+        <script id="j_idt104_s" type="text/javascript">$(function(){PrimeFaces.cw("AjaxStatus","widget_j_idt104",{id:"j_idt104"});});</script>
+        </div>
+    </h:body>
+    
+
+
+</html>

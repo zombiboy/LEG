@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Rapport
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="ETAT RAPPORT"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                <div class="ui-g-12 ui-md-12">
+                    <div class="card clearfix summary">
+                        <span class="title">Gestion Etat</span>
+                        <span class="detail">GENERER VOS ETATS</span>
+                        <span class="count visitors">12</span>
+                    </div>
+                </div>
+                
+                
+                
+                <h:outputText value="Situation Garage"></h:outputText>
+                
+                <style type="text/css">
+                        .ui-datatable .ui-datatable-header {
+                            text-align: right !important;
+                        }
+
+                        .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                            display: none;
+                        }
+                    </style>
+                    
+                
+                
+                    <table class="order-table">
+                        <tr>
+                                <th class="order-table-header">Order No</th>
+                                <th class="order-table-header">Product Name</th>
+                                 
+                        </tr>
+                        <tbody>
+                                <ui:repeat var="o" value="#{reparationcamionController.items}" varStatus="status">
+                                        <h:panelGroup rendered="#{status.even}">
+                                          <tr>
+                                                <td class="order-table-even-row">
+                                                     
+                                                    <ui:repeat var="detail" value="#{o.idsuspensioncamion.detailsuspensionList}" varStatus="status2">
+                                                        #{detail.idpanne.designationpanne}
+                                                    </ui:repeat>
+                                                     
+                                                </td>
+                                                <td class="order-table-even-row">#{o.idsuspensioncamion.lieususpensioncamion}</td>
+                                               
+                                          </tr>
+                                        </h:panelGroup>
+                                         
+                                </ui:repeat>
+                        </tbody>
+                </table>
+
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

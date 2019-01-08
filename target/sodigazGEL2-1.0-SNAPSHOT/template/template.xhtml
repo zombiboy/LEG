@@ -1,0 +1,271 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:shiro="http://shiro.apache.org/tags"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    
+    <h:head>
+        <h:outputStylesheet name="style.css" />
+        <h:outputStylesheet name="css/animate.css" />
+        <h:outputStylesheet name="css/animate2.css" />
+        <h:outputStylesheet name="css/layout.css" />
+        <h:outputStylesheet name="css/layout2.css" />
+        <h:outputStylesheet name="css/nanoscroller.css" />
+        <h:outputStylesheet name="css/nanoscroller2.css" />
+        <h:outputStylesheet name="theme.css" />
+        <h:outputStylesheet name="components.css" />
+        <h:outputStylesheet name="fa/font-awesome.css" />
+        
+        
+        <h:outputScript  name = "jquery/jquery.js" />
+        <h:outputScript  name = "jquery/jquery2.js" />
+        <h:outputScript  name = "jquery/jquery-plugins.js" />
+        <h:outputScript  name = "jquery/jquery-plugins2.js" />
+        <h:outputScript  name = "core.js" />
+        <h:outputScript  name = "components.js" />
+        <h:outputScript  name = "components2.js" />
+        
+        <h:outputScript  name = "js/layout.js" />
+        <h:outputScript  name = "js/nanoscroller.js" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+        <title><ui:insert name="title">Sodigaz APC</ui:insert></title>
+        
+     </h:head>
+   
+
+    <h:body class="main-body menu-layout-static">
+        
+        <p:growl id="growl"  life="1000" />
+
+        <div class="wrapper">
+
+        <div class="topbar clearfix">
+            <a id="omega-menu-button" href="#">
+                <span class="fa fa-bars"></span>
+            </a>
+            
+            <span class="topbar-title">
+                <ui:insert name="topBarTitle" >
+                    Acceuil
+                </ui:insert>
+            
+            </span> 
+            
+            <a id="options-menu-button" href="#">
+                <span class="fa fa-ellipsis-h"></span>
+            </a>
+            
+            <div id="topbar-icons" class="animated">
+                
+                <a href="#">
+                    <span class="topbar-item-text">Messages</span>
+                    <span class="topbar-icon fa fa-envelope-o animated swing"></span>
+                    <span class="topbar-badge animated rubberBand">5</span>
+                </a>
+                <a href="${facesContext.externalContext.requestContextPath}/faces/utilisateur/Profile.xhtml">
+                    <span class="topbar-item-text">Reglages</span>
+                    <span class="topbar-icon fa fa-gear"></span>
+                </a>
+                <a href="#">
+                    <span class="topbar-item-text">Utilisateur</span>
+                    <span class="topbar-icon fa fa-user"></span>
+                </a>
+            </div>
+            
+        </div>
+        <h:form id="menuform" >     
+       
+        <input type="hidden" name="menuform" value="menuform" />
+
+            <div class="sidebar">
+                <div class="nano">
+                    <div class="nano-content sidebar-scroll-content">
+                        <div class="logo">
+                            <p:graphicImage  name="/images/logo.png" width="113"/>
+                        </div>
+
+                        <div class="profile">
+                            <p:graphicImage  name="/images/profile.png" width="113"/>
+                            <a id="profile-button" href="#">
+                                <span class="username">
+                                    Hello, <shiro:guest>Guest</shiro:guest>
+                                    <shiro:user><shiro:principal/></shiro:user> !
+                                </span>
+                                <i class="fa fa-fw fa-cog"></i>
+                            </a>
+                            <ul>
+                                <li><a href="${facesContext.externalContext.requestContextPath}/faces/utilisateur/Profile.xhtml"><i class="fa fa-fw fa-sliders"></i><span>Mon compte</span></a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Notifications</span><span class="menu-badge">2</span></a></li>
+                                <li><a href="${facesContext.externalContext.requestContextPath}/faces/authentification/index.xhtml"><i class="fa fa-fw fa-sign-out"></i><span>déconnexion </span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="menu">
+
+                            <ul id="menuform:j_idt18" class="menu-container">
+                                    <li id="menuform:om_dashboard" role="menuitem">
+                                        <a href="${facesContext.externalContext.requestContextPath}/faces/acceuil/index.xhtml">
+                                            <i class="fa fa-home fa-fw"></i>
+                                        <span>Acceuil</span>
+                                        </a>
+                                    </li>
+                                
+
+                                <shiro:hasAnyRoles name="maintenancier,admin">
+                                        <li id="menuform:om_db_inspection" role="menuitem">
+                                            <a href="${facesContext.externalContext.requestContextPath}/faces/inspectioncamion/index.xhtml">
+                                                <i class="fa fa-search"></i>
+                                                <span>Inspection
+                                                </span>
+                                            </a>
+                                        </li>
+
+
+
+                                        <li id="menuform:om_db_suspension" role="menuitem">
+                                            <a href="${facesContext.externalContext.requestContextPath}/faces/suspensioncamion/index.xhtml">
+                                                <i class="fa fa-times fa-fw"></i>
+                                                <span>Suspensions</span>
+                                            </a>
+                                        </li>
+                                    </shiro:hasAnyRoles>
+                                    
+
+                                    <li id="menuform:om_db_reparation" role="menuitem">
+                                        <a href="${facesContext.externalContext.requestContextPath}/faces/reparationcamion/index.xhtml">
+                                            <i class="fa fa-wrench fa-fw"></i>
+                                            <span>Reparations</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_alerte_periodique" role="menuitem">
+                                        <a href="${facesContext.externalContext.requestContextPath}/faces/alerteperiodique/index.xhtml">
+                                            <i class="fa fa-suitcase"></i>
+                                            <span>Alertes Periodique</span>
+                                        </a>
+                                    </li>
+                                
+                                    
+                                
+                                    <shiro:hasAnyRoles name="maintenancier,admin">
+                                        <li id="menuform:om_db_alerte_aleatoire" role="menuitem">
+                                            <a href="${facesContext.externalContext.requestContextPath}/faces/detailinspection/index.xhtml">
+                                                <i class="fa fa-suitcase"></i>
+                                                <span>Alertes Aleatoire</span>
+                                            </a>
+                                        </li>
+                                    </shiro:hasAnyRoles>
+                                    
+                                
+                                
+                                    <shiro:hasAnyRoles name="logisticien,admin">
+                                        <li id="menuform:om_db_camions" role="menuitem">
+                                            <a href="${facesContext.externalContext.requestContextPath}/faces/camion/index.xhtml">
+                                                <i class="fa fa-suitcase"></i>
+                                                <span>Camions</span>
+                                            </a>
+                                        </li>
+                                    </shiro:hasAnyRoles>
+                                     
+
+                                                                    
+                                <shiro:hasRole name="admin">
+                                    <li id="menuform:om_administration" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i>
+                                        <span>Administration</span><i class="fa fa-fw fa-angle-down"></i></a>
+                                        <ul role="menu">
+                                                <li id="menuform:om_pannes" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/panne/index.xhtml">
+                                                        <i class="fa fa-square-o fa-fw"></i><span>Pannes</span></a>
+                                                </li>
+                                                <li id="menuform:om_livreurs" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/livreur/index.xhtml">
+                                                        <i class="fa fa-sign-in fa-fw"></i>
+                                                <span>Livreur</span></a></li>
+                                                <li id="menuform:om_circuit" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/circuitcamion/index.xhtml">
+                                                        <i class="fa fa-sign-in fa-fw"></i>
+                                                    <span>Circuit</span></a>
+                                                </li>
+
+                                                <li id="menuform:om_fonction" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/fonctionemployer/index.xhtml">
+                                                        <i class="fa fa-exclamation-circle fa-fw"></i>
+                                                <span>Fonction</span></a>
+                                                </li>    
+                                                <li id="menuform:om_employer" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/employer/index.xhtml">
+                                                        <i class="fa fa-exclamation-circle fa-fw"></i>
+                                                    <span>Employer</span></a>
+                                                </li> 
+
+                                                 
+                                                <li id="menuform:om_empty" role="menuitem">
+                                                    <a href="${facesContext.externalContext.requestContextPath}/faces/utilisateur/index.xhtml">
+                                                        <i class="fa fa-exclamation-circle fa-fw"></i>
+                                                <span>Utilisateur</span></a></li>  
+                                                
+
+                                        </ul>
+                                    </li>
+                                </shiro:hasRole>
+
+                            <li id="menuform:om_doc" role="menuitem">
+                                <a href="#"><i class="fa fa-book fa-fw"></i>
+                                <span>Documentation</span>
+                                </a>
+                            </li>
+                </ul>
+                <script id="menuform:j_idt18_s" type="text/javascript">PrimeFaces.cw("Omega","widget_menuform_j_idt18",{id:"menuform:j_idt18"});</script>
+                        </div>
+                    </div>
+                </div>
+            </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="7894077782919283152:2597600198985788506" autocomplete="off" />
+        </h:form>
+
+        <div class="main">
+                
+            <div class="ui-g ui-fluid dashboard">
+         
+                
+                <ui:insert name="content" >
+                    <ui:include src="/template/common/commonContent.xhtml" />
+                </ui:insert>
+                
+
+            </div>
+            
+           
+        </div>
+
+        <div class="footer">
+            
+            <ui:insert name="footer" >
+                <ui:include src="/template/common/commonFooter.xhtml" />
+              </ui:insert>
+                
+                
+        </div>
+
+        <div id="j_idt104" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <div id="j_idt104_start" style="display:none">
+                <p:graphicImage name="/images/preloader.gif"  style="width: 32px;"/>
+            </div>
+            <div id="j_idt104_complete" style="display:none"></div>
+        </div>
+
+              
+            
+        <script id="j_idt104_s" type="text/javascript">$(function(){PrimeFaces.cw("AjaxStatus","widget_j_idt104",{id:"j_idt104"});});</script>
+        </div>
+    </h:body>
+    
+
+
+</html>

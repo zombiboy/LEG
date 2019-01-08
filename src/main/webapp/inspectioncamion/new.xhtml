@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            <ui:define name="topBarTitle">
+                Nouvelle Inspection
+            </ui:define>
+            <ui:define name="content">
+
+
+                    <h:form id="CheckListCreateForm">
+                        <h:panelGroup id="display">
+
+                        <h1><h:outputText value="CheckList"/></h1>
+                       
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">TOUS LES PANNES</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+                                    
+                                    <p:selectManyCheckbox id="grid" value="#{detailinspectionController.selectedPannes}" layout="grid" columns="1">
+                                        <f:selectItems value="#{panneController.itemsAvailableSelectOne}"
+                                                      var="idpanneItem"
+                                                      itemLabel="#{idpanneItem.designationpanne}"
+                                                      itemValue="#{idpanneItem}"/>
+                                   </p:selectManyCheckbox>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">CAMION LIVREUR</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+                                    
+                                    <p:outputLabel value="#{bundle.CreateInspectioncamionLabel_compteurcamion}" for="compteurcamion" />
+                                    <p:inputText id="compteurcamion" value="#{detailinspectionController.inspectioncamion.compteurcamion}" title="#{bundle.CreateInspectioncamionTitle_compteurcamion}" required="true" requiredMessage="saisir compteur"/>
+                                    <p:outputLabel value="#{bundle.CreateInspectioncamionLabel_commentaire}" for="commentaire" />
+                                        
+                                    <p:selectOneMenu id="commentaire" value="#{detailinspectionController.inspectioncamion.commentaire}" title="#{bundle.CreateInspectioncamionTitle_commentaire}"  >
+                                        <f:selectItem itemLabel="Select" itemValue="" />
+                                        <f:selectItem itemLabel="Bon pour le service" itemValue="Xbox One" />
+                                        <f:selectItem itemLabel="Accepté avec réserves" itemValue="PS4" />
+                                        <f:selectItem itemLabel="Refus" itemValue="Wii U" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="*Camion" for="idcamion" />
+                                     
+                                    <p:selectOneMenu id="idcamion" value="#{detailinspectionController.inspectioncamion.idcamion}" >
+                                        <f:selectItems value="#{camionController.itemsAvailableSelectOne}"
+                                                       var="idcamionItem"
+                                                       itemLabel="#{idcamionItem.immatriculation}"
+                                                       itemValue="#{idcamionItem}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="*Controleur" for="idcontroleur" />
+                                    <p:selectOneMenu id="idcontroleur" value="#{detailinspectionController.inspectioncamion.idcontroleur}" required="true" requiredMessage="#{bundle.EditInspectioncamionRequiredMessage_idcontroleur}">
+                                        <f:selectItems value="#{controleurController.itemsAvailableSelectOne}"
+                                                       var="idcontroleurItem"
+                                                       itemLabel="#{idcontroleurItem.nomcontroleur}"
+                                                       itemValue="#{idcontroleurItem}"/>
+                                    </p:selectOneMenu>
+                                    
+                                </div>
+                            </div>
+                         </div>
+
+                        <p:commandButton process="CheckListCreateForm" value="afficher Selectionner" update="display" oncomplete="PF('dlg').show()" icon="ui-icon-check" />
+                        <p:commandButton value="sauvegarder " process="CheckListCreateForm" actionListener="#{detailinspectionController.createCheckList}"  update="display,:growl" oncomplete="handleSubmit(args);"/>
+
+                        
+                        </h:panelGroup>
+                    </h:form>
+ 
+                    <p:dialog header="Values" modal="true" showEffect="clip" widgetVar="dlg" resizable="false">
+                        <p:outputPanel id="display2">
+                            <p:dataList value="#{detailinspectionController.selectedPannes}" var="panne">
+                                <f:facet name="header">
+                                    Autres
+                                </f:facet>
+                                #{panne.designationpanne}
+                            </p:dataList>
+                            <p:dataList value="#{checkboxView.selectedCities}" var="city">
+                                <f:facet name="header">
+                                    Electricite
+                                </f:facet>
+                                #{city}
+                            </p:dataList>
+                             
+                        </p:outputPanel>
+                        <p:commandButton process="CheckListCreateForm" value="resumer" actionListener="#{detailinspectionController.resumeCheckList()}"/>
+                    </p:dialog>
+                    
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

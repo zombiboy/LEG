@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReparationcamionViewDlg" widgetVar="ReparationcamionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewReparationcamionTitle}">
+            <h:form id="ReparationcamionViewForm">
+                <h:panelGroup id="display">
+                    
+                    <p:fieldset legend="Detail Reparation" collapsed="false" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{reparationcamionController.selected != null}">
+                        
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_nomgarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.nomgarage}" title="#{bundle.ViewReparationcamionTitle_nomgarage}"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_responsablegarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.responsablegarage}" title="#{bundle.ViewReparationcamionTitle_responsablegarage}"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_telgarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.telgarage}" title="#{bundle.ViewReparationcamionTitle_telgarage}"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_observationgarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.observationgarage}" title="#{bundle.ViewReparationcamionTitle_observationgarage}"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_estreparer}"/>
+                            <p:selectBooleanCheckbox value="#{reparationcamionController.selected.estreparer}" disabled="true"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_dateentreeprevuegarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.dateentreeprevuegarage}" title="#{bundle.ViewReparationcamionTitle_dateentreeprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_dateentreeexactegarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.dateentreeexactegarage}" title="#{bundle.ViewReparationcamionTitle_dateentreeexactegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_datesortieprevuegarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.datesortieprevuegarage}" title="#{bundle.ViewReparationcamionTitle_datesortieprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_datesortieexactegarage}"/>
+                            <h:outputText value="#{reparationcamionController.selected.datesortieexactegarage}" title="#{bundle.ViewReparationcamionTitle_datesortieexactegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_dateremiseenservice}"/>
+                            <h:outputText value="#{reparationcamionController.selected.dateremiseenservice}" title="#{bundle.ViewReparationcamionTitle_dateremiseenservice}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_etatreparation}"/>
+                            <h:outputText value="#{reparationcamionController.selected.etatreparation}" title="#{bundle.ViewReparationcamionTitle_etatreparation}"/>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_datereparationcamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.datereparationcamion}" title="#{bundle.ViewReparationcamionTitle_datereparationcamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_heurereparationcamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.heurereparationcamion}" title="#{bundle.ViewReparationcamionTitle_heurereparationcamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewReparationcamionLabel_idsuspensioncamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.idsuspensioncamion}" title="#{bundle.ViewReparationcamionTitle_idsuspensioncamion}"/>
+                        </p:panelGrid>
+                    </p:fieldset>  
+                    <p:fieldset legend="Detail Suspension" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{reparationcamionController.selected.idsuspensioncamion != null}">
+                            <h:outputText value="#{bundle.ViewSuspensioncamionLabel_datesuspensioncamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.idsuspensioncamion.datesuspensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_datesuspensioncamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewSuspensioncamionLabel_heuresuspensioncamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.idsuspensioncamion.heuresuspensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_heuresuspensioncamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewSuspensioncamionLabel_lieususpensioncamion}"/>
+                            <h:outputText value="#{reparationcamionController.selected.idsuspensioncamion.lieususpensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_lieususpensioncamion}"/>
+                            <h:outputText value="#{bundle.ViewSuspensioncamionLabel_enreparation}"/>
+                            <p:selectBooleanCheckbox value="#{reparationcamionController.selected.idsuspensioncamion.enreparation}" disabled="true"/>
+                            
+                        </p:panelGrid>
+                    </p:fieldset>  
+                    <p:commandButton value="#{bundle.Close}" onclick="ReparationcamionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

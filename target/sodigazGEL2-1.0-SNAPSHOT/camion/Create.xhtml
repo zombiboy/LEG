@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CamionCreateDlg" widgetVar="CamionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCamionTitle}">
+            <h:form id="CamionCreateForm">
+                <h:panelGroup id="display">
+                    <p:fieldset legend="CAMION" collapsed="false" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{camionController.selected != null}">                        
+                        
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_immatriculation}" for="immatriculation" />
+                            <p:inputText id="immatriculation" value="#{camionController.selected.immatriculation}" title="#{bundle.CreateCamionTitle_immatriculation}" required="true" requiredMessage="#{bundle.CreateCamionRequiredMessage_immatriculation}"/>
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_proprietairecamion}" for="proprietairecamion" />
+                            <p:selectOneMenu id="proprietairecamion" value="#{camionController.selected.proprietairecamion}" title="#{bundle.CreateCamionTitle_proprietairecamion}" style="width:125px">
+                                <f:selectItems value="#{camionController.proprietairesCamion}" />                     
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Compteur(Km)" for="compteurcamion" />
+                            <p:inputText id="compteurcamion" value="#{camionController.selected.compteurcamion}" title="#{bundle.CreateCamionTitle_compteurcamion}" />
+
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_etatcamion}" for="etatcamion" />
+                            <p:selectOneMenu id="etatcamion" value="#{camionController.selected.etatcamion}" title="#{bundle.CreateCamionTitle_etatcamion}" style="width:125px" >
+                                <f:selectItems value="#{camionController.etatsCamion}"  />                                                     
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_codecamion}" for="codecamion" />
+                            <p:inputText id="codecamion" value="#{camionController.selected.codecamion}" title="#{bundle.CreateCamionTitle_codecamion}" />
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_idcuircuit}" for="idcuircuit" />
+                            <p:selectOneMenu id="idcuircuit" value="#{camionController.selected.idcuircuit}" required="true" requiredMessage="#{bundle.EditCamionRequiredMessage_idcuircuit}">
+                                <f:selectItems value="#{circuitcamionController.itemsAvailableSelectOne}"
+                                               var="idcuircuitItem"
+                                               itemLabel="#{idcuircuitItem.libellecircuit}"
+                                               itemValue="#{idcuircuitItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateCamionLabel_idlivreur}" for="idlivreur" />
+                            <p:selectOneMenu id="idlivreur" value="#{camionController.selected.idlivreur}" >
+                                <f:selectItems value="#{livreurController.itemsAvailableSelectOne}"
+                                               var="idlivreurItem"
+                                               itemLabel="#{idlivreurItem.nomlivreur} #{idlivreurItem.prenomlivreur}"
+                                               itemValue="#{idlivreurItem}"/>
+                            </p:selectOneMenu>
+                        </p:panelGrid>
+                    </p:fieldset>
+                    
+                    <p:panelGrid columns="1" >                       
+ 
+                        <p:fieldset legend="ASSURANCE" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                            <h:panelGrid columns="2" cellpadding="5" rendered="#{camionController.selectedAssurance != null}" >
+
+                                <p:outputLabel value="#{bundle.CreateAlerteperiodiqueLabel_datedernieralerte}" for="datedernieralerteassurance" />
+                                <p:calendar id="datedernieralerteassurance" pattern="MM/dd/yyyy" value="#{camionController.selectedAssurance.datedernieralerte}" title="#{bundle.EditAlerteperiodiqueTitle_datedernieralerte}" required="true" showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreateAlerteperiodiqueLabel_echeancealerte}" for="echeancealerteassurance" />
+                                <p:calendar id="echeancealerteassurance" pattern="MM/dd/yyyy" value="#{camionController.selectedAssurance.echeancealerte}" title="#{bundle.EditAlerteperiodiqueTitle_echeancealerte}"  required="true" showOn="button"/>
+
+                            </h:panelGrid>
+                        </p:fieldset>
+                        <p:fieldset legend="CCVA" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                            <h:panelGrid columns="2" cellpadding="5" rendered="#{camionController.selectedCCVA != null}">
+                                <p:outputLabel value="#{bundle.CreateAlerteperiodiqueLabel_datedernieralerte}" for="datedernieralerteccva" />
+                                <p:calendar id="datedernieralerteccva" pattern="MM/dd/yyyy" value="#{camionController.selectedCCVA.datedernieralerte}" title="#{bundle.EditAlerteperiodiqueTitle_datedernieralerte}" required="true" showOn="button"/>
+                                <p:outputLabel value="#{bundle.CreateAlerteperiodiqueLabel_echeancealerte}" for="echeancealerteccva" />
+                                <p:calendar id="echeancealerteccva" pattern="MM/dd/yyyy" value="#{camionController.selectedCCVA.echeancealerte}" title="#{bundle.EditAlerteperiodiqueTitle_echeancealerte}" required="true" showOn="button"/>                              
+                            </h:panelGrid>
+                        </p:fieldset>
+                       
+                    </p:panelGrid>
+                    <p:commandButton process="CamionCreateForm" actionListener="#{camionController.createCamionAlerte}" value="#{bundle.Save}" update="display,:CamionListForm:datalist,:growl" oncomplete="handleSubmit(args,'CamionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CamionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

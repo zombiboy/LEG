@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            <ui:define name="topBarTitle">
+                Nouvelle Reparation
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    
+                    <h:panelGroup id="panel" >
+
+                        <p:messages id="msgs" />
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                <div id="j_idt49" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="text-align:center;background:#fff;height:100%" data-widget="widget_j_idt49">
+                                    <div id="j_idt49_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">IDENTIFICATION</span></div>
+                                    <div id="j_idt49_content" class="ui-panel-content ui-widget-content">
+                                    <div class="ui-g">                                                                 
+
+                                       <p:outputLabel value="#{bundle.CreateInspectioncamionLabel_compteurcamion}" for="compteurcamion" />
+                                       <p:inputText id="compteurcamion" value="#{checkListReparationView.selectedInspectionCamion.compteurcamion}" title="#{bundle.CreateInspectioncamionTitle_compteurcamion}" required="true" requiredMessage="Veuillez saisir Le compteur"/>
+                                       
+                                       <p:outputLabel value="*Camion" for="idcamion" />
+                                       <p:selectOneMenu id="idcamion" value="#{checkListReparationView.selectedInspectionCamion.idcamion}" filter="true" filterMatchMode="contains" >
+                                           <f:selectItems value="#{camionController.itemsAvailableSelectOne}"
+                                                          var="idcamionItem"
+                                                          itemDisabled="#{idcamionItem.estsuspension}"
+                                                          itemLabel="#{idcamionItem.immatriculation} #{idcamionItem.proprietairecamion}"
+                                                          itemValue="#{idcamionItem}"/>
+                                       </p:selectOneMenu>
+                                                                              
+                                       
+                                    </div>
+
+                                    </div>
+                                </div>
+                             </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">ELECTRICITE</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+
+                                        <p:selectManyCheckbox id="gridElec" class="task-list" value="#{checkListReparationView.selectedPannesElectricite}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeElectricite}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                             </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">MOTEUR</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                      
+
+                                        <p:selectManyCheckbox id="gridVoit"  class="task-list" value="#{checkListReparationView.selectedPannesMoteur}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeMoteur}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">ESSIEUX</span> 
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+                                        
+                                        <p:selectManyCheckbox class="task-list" id="grid2" value="#{checkListReparationView.selectedPannesEssieux}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeEssieux}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                               <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                   <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                       <span class="ui-panel-title">TRANSMISSION</span>
+                                   </div>
+                                   <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                            
+                                       <p:selectManyCheckbox id="gridTransm"  class="task-list" value="#{checkListReparationView.selectedPannesTransmission}" layout="grid" columns="1">
+                                           <f:selectItems value="#{panneController.panneTypeTransmission}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+                                   </div>
+                               </div>
+                            </div>
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">DIRECTION</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                            
+                                    <p:selectManyCheckbox id="gridDirect"  class="task-list" value="#{checkListReparationView.selectedPannesDirection}" layout="grid" columns="1">
+                                        <f:selectItems value="#{panneController.panneTypeDirection}"
+                                                        var="idpanneItem"
+                                                        itemLabel="#{idpanneItem.designationpanne}"
+                                                        itemValue="#{idpanneItem}"/>
+                                     </p:selectManyCheckbox>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">PNEUMATIQUE</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                            
+                                    <p:selectManyCheckbox id="gridPneumatik"  class="task-list" value="#{checkListReparationView.selectedPannesPneumatique}" layout="grid" columns="1">
+                                        <f:selectItems value="#{panneController.panneTypePneumatique}"
+                                                        var="idpanneItem"
+                                                        itemLabel="#{idpanneItem.designationpanne}"
+                                                        itemValue="#{idpanneItem}"/>
+                                     </p:selectManyCheckbox>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">FREINAGE</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                            
+                                    <p:selectManyCheckbox id="gridFrein"  class="task-list" value="#{checkListReparationView.selectedPannesFreinage}" layout="grid" columns="1">
+                                        <f:selectItems value="#{panneController.panneTypeFreinage}"
+                                                        var="idpanneItem"
+                                                        itemLabel="#{idpanneItem.designationpanne}"
+                                                        itemValue="#{idpanneItem}"/>
+                                     </p:selectManyCheckbox>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                            <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                    <span class="ui-panel-title">SUSPENSION</span>
+                                </div>
+                                <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                                    
+                                    <p:selectManyCheckbox id="gridSusp" class="task-list" value="#{checkListReparationView.selectedPannesSuspension}" layout="grid" columns="1">
+                                        <f:selectItems value="#{panneController.panneTypeSuspension}"
+                                                     var="idpanneItem"
+                                                     itemLabel="#{idpanneItem.designationpanne}"
+                                                     itemValue="#{idpanneItem}"/>
+                                  </p:selectManyCheckbox>
+                                </div>
+                            </div>
+                        </div>
+                            
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">SOUDURE</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+
+                                        <p:selectManyCheckbox id="gridSoud" class="task-list" value="#{checkListReparationView.selectedPannesSoudure}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeSoudure}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">DOCUMENTS</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+
+                                        <p:selectManyCheckbox id="gridDocu" class="task-list" value="#{checkListReparationView.selectedPannesDocumentation}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.findPanneBYType(5)}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-12 ui-md-12 ui-lg-12">
+                                <div id="j_idt49" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="text-align:center;background:#fff;height:100%" data-widget="widget_j_idt49">
+                                    <div id="j_idt49_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">REPARATION DETAIL</span></div>
+                                    <div id="j_idt49_content" class="ui-panel-content ui-widget-content">
+                                    <div class="ui-g">  
+                                        
+                                        <p:outputLabel value="#{bundle.CreateReparationcamionLabel_nomgarage}" for="nomgarage" />
+                                        <p:inputText id="nomgarage" value="#{checkListReparationView.selectedReparationCamion.nomgarage}" title="#{bundle.CreateReparationcamionTitle_nomgarage}" required="true" requiredMessage="Nom" />
+                                        <p:outputLabel value="#{bundle.CreateReparationcamionLabel_responsablegarage}" for="responsablegarage" />
+                                        <p:inputText id="responsablegarage" value="#{checkListReparationView.selectedReparationCamion.responsablegarage}" title="#{bundle.CreateReparationcamionTitle_responsablegarage}" />
+                                        <p:outputLabel value="#{bundle.CreateReparationcamionLabel_telgarage}" for="telgarage" />
+                                        <p:inputText id="telgarage" value="#{checkListReparationView.selectedReparationCamion.telgarage}" title="#{bundle.CreateReparationcamionTitle_telgarage}" />
+                                        
+                                        
+                                        <p:outputLabel value="#{bundle.CreateReparationcamionLabel_dateentreeprevuegarage}" for="dateentreeprevuegarage" />
+                                        <p:calendar id="dateentreeprevuegarage" pattern="MM/dd/yyyy" value="#{checkListReparationView.selectedReparationCamion.dateentreeprevuegarage}" title="#{bundle.EditReparationcamionTitle_dateentreeprevuegarage}"  showOn="button"/>
+                                        
+                                         
+ 
+                                    </div>
+
+                                    </div>
+                                </div>
+                             </div>
+
+                            
+                        
+                        <p:commandButton value="Enregistrer" update="panel" actionListener="#{checkListReparationView.saveDirectReparation}" icon="ui-icon-check" />
+
+
+                        <p:dialog header="LE CAMION SERA SUSPENDU" style="background-color:  red;" widgetVar="dlgOuiSuspension" modal="true" resizable="false">
+                            <p:outputPanel >
+                                <p:dataList value="#{checkListReparationView.listeTousLesPannes}" var="panne">
+                                    <f:facet name="header">
+                                        Pannes
+                                    </f:facet>
+                                    #{panne.designationpanne}
+                                </p:dataList>
+                                <p:dataList value="#{checkListReparationView.listeTousLesPannesRefus}" var="panne">
+                                    <f:facet name="header">
+                                        Motif de refus
+                                    </f:facet>
+                                    #{panne.designationpanne}
+                                </p:dataList>
+
+                            </p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="lieudesuspension" value="Lieu Suspension" />
+                                <p:inputText id="lieudesuspension" value="#{checkListReparationView.lieudSuspension}"   label="lieudesuspension" />
+
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Valider"  actionListener="#{checkListReparationView.ouiPourSuspension}" icon="ui-icon-check" />  
+                                    <p:commandButton value="Abandonner"   onclick="dlgOuiSuspension.hide()"/>
+                                </f:facet>  
+                            </h:panelGrid>   
+                        </p:dialog>  
+                        <p:dialog header="ACCEPTER AVEC RESERVE" style="background-color:  green;" widgetVar="dlgNonSuspension" modal="true" resizable="false">
+                            <p:outputPanel >
+                                Panne de Suspension non detecter
+                            </p:outputPanel>
+                            
+
+                        </p:dialog>  
+
+                    </h:panelGroup>
+                </h:form>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

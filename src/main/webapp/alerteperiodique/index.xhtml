@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Alerte Periodique
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="#{bundle.ListLivreurTitle}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                    <h2 style="margin-top:0">Gestion des Alertes Periodiques</h2>
+                    <h:form id="AlerteperiodiqueListForm">
+                        <p:panel header="#{bundle.ListAlerteperiodiqueTitle}">
+                            <p:dataTable id="datalist" value="#{alerteperiodiqueController.items}" var="item"
+                                         widgetVar="alertesTable" multiViewState="true"
+                                         selectionMode="single" selection="#{alerteperiodiqueController.selected}"
+                                         paginator="true"
+                                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowKey="#{item.idalerte}"
+                                         rows="10"
+                                         rowsPerPageTemplate="25,50,75,100,150,1000"                                         
+                                         emptyMessage="Aucun camion ne correspond au critere rechercher" filteredValue="#{alerteperiodiqueController.filteredAlerte}"
+                                         >
+
+                                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                                
+                               
+                                <p:column headerText="Libelle" filterBy="#{item.libellealerte}" sortBy="#{item.libellealerte}" filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('alertesTable').filter()" style="width:100%; box-sizing: border-box;" >
+                                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" /> 
+                                            <f:selectItem itemLabel="ASSURANCE" itemValue="ASSURANCE" /> 
+                                            <f:selectItem itemLabel="CCVA" itemValue="CCVA" /> 
+                                            
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <h:outputText value="#{item.libellealerte}"/>
+                                </p:column>
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Dernier alerte"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.datedernieralerte}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Echeance"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.echeancealerte}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Camion"/>
+                                    </f:facet>
+                                    <h:outputText value="Proprietaire : "/>
+                                    <h:outputText value="#{item.idcamion.proprietairecamion}"/>
+                                    <br/>
+                                    <h:outputText value="Immatriculation : "/>
+                                    <h:outputText value="#{item.idcamion.immatriculation}"/>
+                                    
+                                </p:column>
+                                
+                                <p:column headerText="Restants(jours)" filterBy="#{item.jourrestant}" sortBy="#{item.jourrestant}" filterMatchMode="startsWith">
+                                    <h:outputText value="#{item.jourrestant}" />
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Niveau Alerte"/>
+                                    </f:facet>
+                                    <h:outputText value="Valide" rendered="#{item.jourrestant eq 0 }" style="background-color: #1f3b59" />
+                                    <h:outputText value="Valide" rendered="#{item.jourrestant gt 0 }" style="background-color: green" />
+                                    <h:outputText value="Invalide" rendered="#{item.jourrestant lt 0 }" style="background-color: red" />
+                                </p:column>
+                                <f:facet name="footer">                                        
+                                    <div class="ui-g">
+
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="createButton" icon="ui-icon-plus"    value="#{bundle.Create}" actionListener="#{alerteperiodiqueController.prepareCreate}" update=":AlerteperiodiqueCreateForm" oncomplete="PF('AlerteperiodiqueCreateDialog').show()"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AlerteperiodiqueViewForm" oncomplete="PF('AlerteperiodiqueViewDialog').show()" disabled="#{empty alerteperiodiqueController.selected}"/>
+
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AlerteperiodiqueEditForm" oncomplete="PF('AlerteperiodiqueEditDialog').show()" disabled="#{empty alerteperiodiqueController.selected}"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{alerteperiodiqueController.destroy}" update=":growl,datalist" disabled="#{empty alerteperiodiqueController.selected or utilisateurController.isAcces}"/>
+
+                                        </div>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+                
+                        
+                
+                     <ui:include src="Create.xhtml"/>
+                     <ui:include src="Edit.xhtml"/>
+                     <ui:include src="View.xhtml"/>
+                     <script type="text/javascript">
+                        function handleSubmit(args) {
+
+                            PF('AlerteperiodiqueCreateDialog').hide();
+                            PF('AlerteperiodiqueEditDialog').hide();
+
+                        }
+                    </script>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

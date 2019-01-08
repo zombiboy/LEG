@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetailsuspensionCreateDlg" widgetVar="DetailsuspensionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDetailsuspensionTitle}">
+            <h:form id="DetailsuspensionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detailsuspensionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateDetailsuspensionLabel_commentaire}" for="commentaire" />
+                        <p:inputText id="commentaire" value="#{detailsuspensionController.selected.commentaire}" title="#{bundle.CreateDetailsuspensionTitle_commentaire}" />
+                        <p:outputLabel value="#{bundle.CreateDetailsuspensionLabel_idpanne}" for="idpanne" />
+                        <p:selectOneMenu id="idpanne" value="#{detailsuspensionController.selected.idpanne}" required="true" requiredMessage="#{bundle.EditDetailsuspensionRequiredMessage_idpanne}">
+                            <f:selectItems value="#{panneController.itemsAvailableSelectOne}"
+                                           var="idpanneItem"
+                                           itemValue="#{idpanneItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDetailsuspensionLabel_idsuspensioncamion}" for="idsuspensioncamion" />
+                        <p:selectOneMenu id="idsuspensioncamion" value="#{detailsuspensionController.selected.idsuspensioncamion}" required="true" requiredMessage="#{bundle.EditDetailsuspensionRequiredMessage_idsuspensioncamion}">
+                            <f:selectItems value="#{suspensioncamionController.itemsAvailableSelectOne}"
+                                           var="idsuspensioncamionItem"
+                                           itemValue="#{idsuspensioncamionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detailsuspensionController.create}" value="#{bundle.Save}" update="display,:DetailsuspensionListForm:datalist,:growl" oncomplete="handleSubmit(args,'DetailsuspensionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetailsuspensionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

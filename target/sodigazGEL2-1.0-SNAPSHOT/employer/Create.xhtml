@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployerCreateDlg" widgetVar="EmployerCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmployerTitle}">
+            <h:form id="EmployerCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employerController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateEmployerLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{employerController.selected.nom}" title="#{bundle.CreateEmployerTitle_nom}" required="true" requiredMessage="#{bundle.CreateEmployerRequiredMessage_idemployer}"/>
+                        <p:outputLabel value="#{bundle.CreateEmployerLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{employerController.selected.prenom}" title="#{bundle.CreateEmployerTitle_prenom}" required="true" requiredMessage="#{bundle.CreateEmployerRequiredMessage_idemployer}"/>
+                        <p:outputLabel value="#{bundle.CreateEmployerLabel_telephone}" for="telephone" />
+                        <p:inputText id="telephone" value="#{employerController.selected.telephone}" title="#{bundle.CreateEmployerTitle_telephone}" />
+                        <p:outputLabel value="#{bundle.CreateEmployerLabel_matricule}" for="matricule" />
+                        <p:inputText id="matricule" value="#{employerController.selected.matricule}" title="#{bundle.CreateEmployerTitle_matricule}" />
+                        <p:outputLabel value="#{bundle.CreateEmployerLabel_idfonctionemployer}" for="idfonctionemployer" />
+                        <p:selectOneMenu id="idfonctionemployer" value="#{employerController.selected.idfonctionemployer}" required="true" requiredMessage="#{bundle.EditEmployerRequiredMessage_idfonctionemployer}">
+                            <f:selectItems value="#{fonctionemployerController.itemsAvailableSelectOne}"
+                                           var="idfonctionemployerItem"
+                                           itemLabel="#{idfonctionemployerItem.nomemploi}"
+                                           itemValue="#{idfonctionemployerItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{employerController.create}" value="#{bundle.Save}" update="display,:EmployerListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployerCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployerCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

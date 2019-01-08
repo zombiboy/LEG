@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReparationcamionEditDlg" widgetVar="ReparationcamionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReparationcamionTitle}">
+            <h:form id="ReparationcamionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reparationcamionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_nomgarage}" for="nomgarage" />
+                        <p:inputText id="nomgarage" value="#{reparationcamionController.selected.nomgarage}" title="#{bundle.EditReparationcamionTitle_nomgarage}" />
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_responsablegarage}" for="responsablegarage" />
+                        <p:inputText id="responsablegarage" value="#{reparationcamionController.selected.responsablegarage}" title="#{bundle.EditReparationcamionTitle_responsablegarage}" />
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_telgarage}" for="telgarage" />
+                        <p:inputText id="telgarage" value="#{reparationcamionController.selected.telgarage}" title="#{bundle.EditReparationcamionTitle_telgarage}" />
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_observationgarage}" for="observationgarage" />
+                        <p:inputText id="observationgarage" value="#{reparationcamionController.selected.observationgarage}" title="#{bundle.EditReparationcamionTitle_observationgarage}" />
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_estreparer}" for="estreparer" />
+                        <p:selectBooleanCheckbox id="estreparer" value="#{reparationcamionController.selected.estreparer}" disabled="true" />
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_dateentreeprevuegarage}" for="dateentreeprevuegarage" />
+                        <p:calendar id="dateentreeprevuegarage" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.dateentreeprevuegarage}" title="#{bundle.EditReparationcamionTitle_dateentreeprevuegarage}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_dateentreeexactegarage}" for="dateentreeexactegarage" />
+                        <p:calendar id="dateentreeexactegarage" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.dateentreeexactegarage}" title="#{bundle.EditReparationcamionTitle_dateentreeexactegarage}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_datesortieprevuegarage}" for="datesortieprevuegarage" />
+                        <p:calendar id="datesortieprevuegarage" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.datesortieprevuegarage}" title="#{bundle.EditReparationcamionTitle_datesortieprevuegarage}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_datesortieexactegarage}" for="datesortieexactegarage" />
+                        <p:calendar id="datesortieexactegarage" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.datesortieexactegarage}" title="#{bundle.EditReparationcamionTitle_datesortieexactegarage}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_dateremiseenservice}" for="dateremiseenservice" />
+                        <p:calendar id="dateremiseenservice" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.dateremiseenservice}" title="#{bundle.EditReparationcamionTitle_dateremiseenservice}"  showOn="button" disabled="true"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_etatreparation}" for="etatreparation" />
+                        <p:inputText id="etatreparation" value="#{reparationcamionController.selected.etatreparation}" title="#{bundle.EditReparationcamionTitle_etatreparation}" disabled="true"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_datereparationcamion}" for="datereparationcamion" />
+                        <p:calendar id="datereparationcamion" pattern="MM/dd/yyyy" value="#{reparationcamionController.selected.datereparationcamion}" title="#{bundle.EditReparationcamionTitle_datereparationcamion}"  showOn="button" disabled="true"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_heurereparationcamion}" for="heurereparationcamion" />
+                        <p:calendar id="heurereparationcamion" pattern="HH:mm:ss" value="#{reparationcamionController.selected.heurereparationcamion}" title="#{bundle.EditReparationcamionTitle_heurereparationcamion}"  showOn="button" disabled="true"/>
+                        <p:outputLabel value="#{bundle.EditReparationcamionLabel_idsuspensioncamion}" for="idsuspensioncamion" />
+                        <p:selectOneMenu id="idsuspensioncamion" value="#{reparationcamionController.selected.idsuspensioncamion}" required="true" requiredMessage="#{bundle.EditReparationcamionRequiredMessage_idsuspensioncamion}" disabled="true">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{suspensioncamionController.itemsAvailableSelectOne}"
+                                           var="idsuspensioncamionItem"
+                                           itemValue="#{idsuspensioncamionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reparationcamionController.update}" value="#{bundle.Save}" update="display,:ReparationcamionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReparationcamionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReparationcamionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

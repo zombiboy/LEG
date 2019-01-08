@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetailinspectionEditDlg" widgetVar="DetailinspectionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDetailinspectionTitle}">
+            <h:form id="DetailinspectionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detailinspectionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditDetailinspectionLabel_datedelaireparation}" for="datedelaireparation" />
+                        <p:calendar id="datedelaireparation" pattern="MM/dd/yyyy" value="#{detailinspectionController.selected.datedelaireparation}" title="#{bundle.EditDetailinspectionTitle_datedelaireparation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditDetailinspectionLabel_commentaire}" for="commentaire" />
+                        <p:inputText id="commentaire" value="#{detailinspectionController.selected.commentaire}" title="#{bundle.EditDetailinspectionTitle_commentaire}" />
+                        <p:outputLabel value="#{bundle.EditDetailinspectionLabel_etatalerte}" for="etatalerte" />
+                        <p:selectBooleanCheckbox id="etatalerte" value="#{detailinspectionController.selected.etatalerte}" />
+                        <p:outputLabel value="#{bundle.EditDetailinspectionLabel_idinspectioncamion}" for="idinspectioncamion" />
+                        <p:selectOneMenu id="idinspectioncamion" value="#{detailinspectionController.selected.idinspectioncamion}" required="true" requiredMessage="#{bundle.EditDetailinspectionRequiredMessage_idinspectioncamion}" disabled="true">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inspectioncamionController.itemsAvailableSelectOne}"
+                                           var="idinspectioncamionItem"
+                                           itemLabel="#{idinspectioncamionItem.idinspectioncamion}"
+                                           itemValue="#{idinspectioncamionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDetailinspectionLabel_idpanne}" for="idpanne" />
+                        <p:selectOneMenu id="idpanne" value="#{detailinspectionController.selected.idpanne}" required="true" requiredMessage="#{bundle.EditDetailinspectionRequiredMessage_idpanne}" disabled="true">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{panneController.itemsAvailableSelectOne}"
+                                           var="idpanneItem"
+                                           itemLabel="#{idpanneItem.designationpanne}"
+                                           itemValue="#{idpanneItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{detailinspectionController.update}" value="#{bundle.Save}" update="display,:DetailinspectionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DetailinspectionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DetailinspectionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

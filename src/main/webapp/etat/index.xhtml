@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Rapport
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="ETAT RAPPORT"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                <div class="ui-g-12 ui-md-12">
+                    <div class="card clearfix summary">
+                        <span class="title">Gestion Etat</span>
+                        <span class="detail">GENERER VOS ETATS GARAGE</span>
+                        <span class="count visitors">12</span>
+                    </div>
+                </div>
+                
+                
+                                
+                                
+                <style type="text/css">
+                        .ui-datatable .ui-datatable-header {
+                            text-align: right !important;
+                        }
+
+                        .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                            display: none;
+                        }
+                    </style>
+                    
+                     <h:form id="ReparationcamionListForm">
+                        <p:panel header="#{bundle.ListReparationcamionTitle}">
+                            <p:dataTable id="datalist" value="#{reparationcamionController.itemsEnReparation}" var="item"
+                                         widgetVar="reparationsTable" multiViewState="true"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         >
+                                
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Immatriculation"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.immatriculation}"/>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Code"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.codecamion}"/>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Circuit"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.idcuircuit.libellecircuit}"/>
+                            
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Pannes"/>
+                            </f:facet>
+                            
+                            <ui:repeat var="detail" value="#{item.idsuspensioncamion.detailsuspensionList}" varStatus="status">
+                                #{detail.idpanne.designationpanne},
+                            </ui:repeat>
+                                                        
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date Suspension"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.datesuspensioncamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieprevuegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datesortieprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        
+                        
+                            <f:facet name="footer">                                
+
+                                <div class="ui-g">                                                                                             
+                                        <div class="ui-g-3">
+                                            <p:button outcome="/etat/billetEtatGarage" value="Billet" icon="fa fa-fw fa-file-text-o" >    
+                                        </p:button>
+                                            
+                                        </div>
+                                                                                
+                                    </div>
+                            </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                         <h3>Exporter uniquement les donnees de la Page</h3>
+                        <h:commandLink>
+                            <p:graphicImage name="/images/excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="etatGarage" pageOnly="true" />
+                        </h:commandLink>
+                        
+                    </h:form>
+
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

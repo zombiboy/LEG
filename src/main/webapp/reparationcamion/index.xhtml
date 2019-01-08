@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+                <ui:define name="topBarTitle">
+                    Reparations
+                </ui:define>
+               <ui:define name="content">
+                    <h2 style="margin-top:0"> Gestion des Reparations</h2>
+                    
+                    <style type="text/css">
+                        .ui-datatable .ui-datatable-header {
+                            text-align: right !important;
+                        }
+
+                        .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                            display: none;
+                        }
+                    </style>
+         
+                    <h:form id="ReparationcamionListForm">
+                        <p:panel header="#{bundle.ListReparationcamionTitle}">
+                            <p:dataTable id="datalist" value="#{reparationcamionController.items}" var="item"
+                                         widgetVar="reparationsTable" multiViewState="true"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30,40,50,1000"
+                         selectionMode="single" selection="#{reparationcamionController.selected}" rowKey="#{item.idreparationcamion}"
+                         emptyMessage="Aucun camion ne correspond au critere rechercher" filteredValue="#{reparationcamionController.filteredReparations}">
+
+                                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton repareButton "/>
+                                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton repareButton "/>
+
+                                
+                                <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Rechercher dans tous les champs:" />
+                                        <p:inputText id="globalFilter" onkeyup="PF('reparationsTable').filter()" style="width:150px" placeholder="Entrer un mots clé"/>
+                                    </p:outputPanel>
+                                    <p:commandButton id="toggler" type="button" value="Columns" style="float: right;width: 100px" icon="fa fa-fw fa-list-ol" />
+                                    <p:columnToggler datasource="datalist" trigger="toggler" />
+                                </f:facet>
+
+
+                                <p:column headerText="#{bundle.ListReparationcamionTitle_nomgarage}" filterBy="#{item.nomgarage}" sortBy="#{item.nomgarage}" filterMatchMode="contains">
+                                    <h:outputText value="#{item.nomgarage}"/>
+                                </p:column>
+                                
+                                <p:column headerText="#{bundle.ListReparationcamionTitle_responsablegarage}" filterBy="#{item.responsablegarage}" sortBy="#{item.responsablegarage}" filterMatchMode="contains">
+                                    <h:outputText value="#{item.responsablegarage}"/>
+                                </p:column>
+                                
+                                <p:column headerText="#{bundle.ListReparationcamionTitle_telgarage}" filterBy="#{item.telgarage}" sortBy="#{item.telgarage}" filterMatchMode="contains">
+                                    <h:outputText value="#{item.telgarage}"/>
+                                </p:column>
+                                
+                                                                
+                                
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_observationgarage}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.observationgarage}"/>
+                                </p:column>
+                                
+                                
+                                
+                                <p:column headerText="#{bundle.ListReparationcamionTitle_estreparer}" filterBy="#{item.estreparer}" sortBy="#{item.estreparer}" filterMatchMode="exact">
+                                    <f:facet name="filter">
+                                        <p:selectOneMenu onchange="PF('reparationsTable').filter()" style="width:100%; box-sizing: border-box;" >
+                                            <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />
+                                            <f:selectItem itemLabel="EN COURS" itemValue="#{false}"  />
+                                            <f:selectItem itemLabel="TERMINER" itemValue="#{true }"  />                                           
+                                        </p:selectOneMenu>
+                                    </f:facet>
+                                    <p:selectBooleanCheckbox value="#{item.estreparer}" disabled="true"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_dateentreeprevuegarage}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateentreeprevuegarage}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_dateentreeexactegarage}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateentreeexactegarage}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieprevuegarage}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.datesortieprevuegarage}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieexactegarage}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.datesortieexactegarage}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_dateremiseenservice}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.dateremiseenservice}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_etatreparation}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.etatreparation}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_datereparationcamion}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.datereparationcamion}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_heurereparationcamion}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.heurereparationcamion}">
+                                        <f:convertDateTime pattern="HH:mm:ss" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListReparationcamionTitle_idsuspensioncamion}"/>
+                                    </f:facet>
+                                    
+                                    <h:outputText value="Camion : "/>
+                                    <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.immatriculation}"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <div class="ui-g">
+                                        
+                                        
+                                        <div class="ui-g-3">
+                                            <p:commandButton id="repareButton" process="datalist"  icon="ui-icon-plus" update=":FinirReparationCamionCreateForm"  value="Finir Reparation" oncomplete="PF('FinirReparationDialog').show()" disabled="#{empty reparationcamionController.selected or reparationcamionController.selected.estreparer}" />
+                                        </div> 
+                                                           
+                                        <div class="ui-g-3">
+                                            <p:button outcome="/inspectioncamion/CheckListReparation.xhtml" value="Nouvelle reparation" icon="ui-icon-plus" >    
+                                            </p:button>
+                                            
+                                        </div>
+                                                                                
+                                        <div class="ui-g-3">                                            
+                                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReparationcamionViewForm" oncomplete="PF('ReparationcamionViewDialog').show()" disabled="#{empty reparationcamionController.selected}"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReparationcamionEditForm" oncomplete="PF('ReparationcamionEditDialog').show()" disabled="#{empty reparationcamionController.selected}"/>
+
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reparationcamionController.destroy}" update=":growl,datalist" disabled="#{empty reparationcamionController.selected}"/>
+                                        </div>
+                                        
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reparationcamionController.prepareCreate}" update=":ReparationcamionCreateForm" oncomplete="PF('ReparationcamionCreateDialog').show()"  disabled="true" rendered="false"/>
+                                        </div>
+                                              
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="etatGarageButton" icon="ui-icon-plus"   value="Etat Garage" actionListener="#{reparationcamionController.exporteReportPDF}" />
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                        <h3>Exporter uniquement les donnees de la Page</h3>
+                            <h:commandLink>
+                                <p:graphicImage name="/images/excel.png" />
+                                <p:dataExporter type="xls" target="datalist" fileName="etatcamions" pageOnly="true"/>
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage name="/images/pdf.png" />
+                                <p:dataExporter type="pdf" target="datalist" fileName="etatcamions" pageOnly="true" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage name="/images/csv.png" />
+                                <p:dataExporter type="csv" target="datalist" fileName="etatcamions" pageOnly="true" />
+                            </h:commandLink>
+
+                            <h:commandLink>
+                                <p:graphicImage name="/images/xml.png" />
+                                <p:dataExporter type="xml" target="datalist" fileName="etatcamions" pageOnly="true" />
+                            </h:commandLink>
+                        <h3>Exporter Tous les donnees</h3>
+                        <h:commandLink>
+                            <p:graphicImage name="/images/excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="etatcamions" />
+                        </h:commandLink>
+                        
+                    </h:form>
+                    <ui:include src="Create.xhtml"/>
+                    <ui:include src="Edit.xhtml"/>
+                    <ui:include src="View.xhtml"/>
+                    <ui:include src="FinirReparation.xhtml"/>
+                                        
+                    <script type="text/javascript">
+                        function handleSubmit(args) {
+
+                            PF('ReparationcamionCreateDialog').hide();
+                            PF('ReparationcamionEditDialog').hide();
+                            PF('FinirReparationDialog').hide();
+                             
+
+                        }
+                    </script>
+
+                   
+    		</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

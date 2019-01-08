@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InspectioncamionViewDlg" widgetVar="InspectioncamionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewInspectioncamionTitle}">
+            <h:form id="InspectioncamionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inspectioncamionController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_datecontrolecamion}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.datecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_datecontrolecamion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_heurecontrolecamion}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.heurecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_heurecontrolecamion}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_compteurcamion}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.compteurcamion}" title="#{bundle.ViewInspectioncamionTitle_compteurcamion}"/>
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_commentaire}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.commentaire}" title="#{bundle.ViewInspectioncamionTitle_commentaire}"/>
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_idcamion}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.idcamion.immatriculation}" title="#{bundle.ViewInspectioncamionTitle_idcamion}"/>
+                        <h:outputText value="#{bundle.ViewInspectioncamionLabel_idutilisateur}"/>
+                        <h:outputText value="#{inspectioncamionController.selected.idutilisateur.username}" title="#{bundle.ViewInspectioncamionTitle_idutilisateur}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="InspectioncamionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                                                        
+                            <p:menuitem value="Panne" url="panne/index.xhtml" />
+                            <p:menuitem value="Livreur" url="livreur/index.xhtml" />
+                            <p:menuitem value="Controleur" url="controleur/index.xhtml" />
+                            <p:menuitem value="Alerte" url="alerte/index.xhtml" />
+                            <p:menuitem value="Camion" url="camion/index.xhtml" />
+                            <p:menuitem value="Faire une Inspection" url="inspection/faireInspection.xhtml" />
+                            <p:menuitem value="Suivre les Suspensions" url="suspension/suspensionCamion.xhtml" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <f:view>
+            <h:form>
+                <p:dataTable  var="panne" value="#{dtPanneView.pannes}" >
+                
+                        <p:column headerText="Id">
+                            <h:outputText value="#{panne.idpanne}" />
+                        </p:column>
+
+                        <p:column headerText="Designation">
+                            <h:outputText value="#{panne.designationpanne}" />
+                        </p:column>
+
+                        <p:column headerText="Peut faire une suspension">
+                            <h:outputText value="#{panne.dosuspend}" />
+                        </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton  icon="ui-icon-search" value="Voire" oncomplete="PF('ddDialog').show()" />
+                        <p:commandButton   icon="ui-icon-search" value="ajouter" oncomplete="PF('newPanneDialog').show()"/>
+                        <p:commandButton   icon="ui-icon-search" value="supprimer"/>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+        
+            
+        
+       
+        <p:dialog header="Informations Panne" widgetVar="ddDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel id="carDetail" style="text-align:center;">
+                <p:panelGrid  columns="2" rendered="#{not empty dtSelectionView.selectedCar}" columnClasses="label,value">
+                    
+                    <h:outputText value="Id:" />
+                    <h:outputText value="#{dtSelectionView.selectedCar.id}" />
+                   
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>   
+        
+        <p:dialog header="Enregistrer une Panne" widgetVar="newPanneDialog" modal="true" showEffect="fade"   resizable="false">
+            <p:outputPanel id="newPanneDialog" style="text-align:center;">
+                
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputLabel for="idPanne" value="Id" />
+                    <p:inputText id="idPanne"  required="true" label="id" />
+
+                    <h:outputLabel for="designationPanne" value="designation" />
+                    <p:inputText id="designation"  required="true" label="designation" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Enregistrer"  />
+                    </f:facet>  
+                </h:panelGrid>
+                
+            </p:outputPanel>
+        </p:dialog>   
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

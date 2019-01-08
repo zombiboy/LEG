@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            <ui:define name="topBarTitle">
+                Nouvelle Inspection
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    
+                    <h:panelGroup id="panel" >
+
+                        <p:messages id="msgs" />
+                        
+                        <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                <div id="j_idt49" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="text-align:center;background:#fff;height:100%" data-widget="widget_j_idt49">
+                                    <div id="j_idt49_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">IDENTIFICATION</span></div>
+                                    <div id="j_idt49_content" class="ui-panel-content ui-widget-content">
+                                    <div class="ui-g">                                                                 
+
+                                       <p:outputLabel value="#{bundle.CreateInspectioncamionLabel_compteurcamion}" for="compteurcamion" />
+                                       <p:inputText id="compteurcamion" value="#{checkListView.selectedInspectionCamion.compteurcamion}" title="#{bundle.CreateInspectioncamionTitle_compteurcamion}" required="true" requiredMessage="Veuillez saisir Le compteur"/>
+                                       <p:outputLabel value="#{bundle.CreateInspectioncamionLabel_commentaire}" for="commentaire" />
+                                       <p:inputText id="commentaire" value="#{checkListView.selectedInspectionCamion.commentaire}" disabled="true" title="#{bundle.CreateInspectioncamionTitle_commentaire}" />
+                                       <p:outputLabel value="*Camion" for="idcamion" />
+                                       <p:selectOneMenu id="idcamion" value="#{checkListView.selectedInspectionCamion.idcamion}" filter="true" filterMatchMode="contains">
+                                           <f:selectItems value="#{camionController.itemsAvailableSelectOne}"
+                                                          var="idcamionItem"
+                                                          itemDisabled="#{idcamionItem.estsuspension}"
+                                                          itemLabel="#{idcamionItem.immatriculation} #{idcamionItem.proprietairecamion}"
+                                                          itemValue="#{idcamionItem}"/>
+                                       </p:selectOneMenu>
+                                          
+                                       
+                                    </div>
+
+                                    </div>
+                                </div>
+                             </div>
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">ELECTRICITE</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+
+                                        <p:selectManyCheckbox id="gridElec" class="task-list" value="#{checkListView.selectedPannesElectricite}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeElectricite}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                             </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">VOITURE</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                      
+
+                                        <p:selectManyCheckbox id="gridVoit"  class="task-list" value="#{checkListView.selectedPannesVoiture}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeVoiture}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">ESSIEUX</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+                                        
+                                        <p:selectManyCheckbox class="task-list" id="grid2" value="#{checkListView.selectedPannesEssieux}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeEssieux}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                               <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                   <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                       <span class="ui-panel-title">CABINE</span>
+                                   </div>
+                                   <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                            
+                                       <p:selectManyCheckbox id="gridCab"  class="task-list" value="#{checkListView.selectedPannesCabine}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.panneTypeCabine}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+                                   </div>
+                               </div>
+                           </div>
+                        
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">DIVERS</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">                                                    
+                                        <p:selectManyCheckbox id="gridDivers" class="task-list" value="#{checkListView.selectedPannesDivers}" layout="grid" columns="1">
+                                          <f:selectItems value="#{panneController.panneTypeDivers}"
+                                                         var="idpanneItem"
+                                                         itemLabel="#{idpanneItem.designationpanne}"
+                                                         itemValue="#{idpanneItem}"/>
+                                      </p:selectManyCheckbox>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ui-g-12 ui-md-6 ui-lg-4">
+
+                                <div   class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+                                        <span class="ui-panel-title">DOCUMENTATION</span>
+                                    </div>
+                                    <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+
+                                        <p:selectManyCheckbox id="gridDocu" class="task-list" value="#{checkListView.selectedPannesDocumentation}" layout="grid" columns="1">
+                                            <f:selectItems value="#{panneController.findPanneBYType(5)}"
+                                                           var="idpanneItem"
+                                                           itemLabel="#{idpanneItem.designationpanne}"
+                                                           itemValue="#{idpanneItem}"/>
+                                        </p:selectManyCheckbox>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        
+                        <p:commandButton value="Enregistrer" update="panel" actionListener="#{checkListView.save}" icon="ui-icon-check" />
+
+
+                        <p:dialog header="LE CAMION SERA SUSPENDU" style="background-color:  red;" widgetVar="dlgOuiSuspension" modal="true" resizable="false">
+                            <p:outputPanel >
+                                <p:dataList value="#{checkListView.listeTousLesPannes}" var="panne">
+                                    <f:facet name="header">
+                                        Pannes
+                                    </f:facet>
+                                    #{panne.designationpanne}
+                                </p:dataList>
+                                <p:dataList value="#{checkListView.listeTousLesPannesRefus}" var="panne">
+                                    <f:facet name="header">
+                                        Motif de refus
+                                    </f:facet>
+                                    #{panne.designationpanne}
+                                </p:dataList>
+
+                            </p:outputPanel>
+                            <h:panelGrid columns="2" cellpadding="5">
+                                <h:outputLabel for="lieudesuspension" value="Lieu Suspension" />
+                                <p:inputText id="lieudesuspension" value="#{checkListView.lieudSuspension}"   label="lieudesuspension" />
+
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Valider"  actionListener="#{checkListView.ouiPourSuspension}" icon="ui-icon-check" />  
+                                    <p:commandButton value="Abandonner"   onclick="dlgOuiSuspension.hide()"/>
+                                </f:facet>  
+                            </h:panelGrid>   
+                        </p:dialog>  
+                        <p:dialog header="ACCEPTER AVEC RESERVE" style="background-color:  green;" widgetVar="dlgNonSuspension" modal="true" resizable="false">
+                            <p:outputPanel >
+                                <p:dataList value="#{checkListView.listeTousLesPannes}" var="panne">
+                                    <f:facet name="header">
+                                        Pannes
+                                    </f:facet>
+                                    #{panne.designationpanne}
+                                </p:dataList>
+
+                            </p:outputPanel>
+                            <f:facet name="footer">
+                                    <p:commandButton value="Valider"  actionListener="#{checkListView.nonPourSuspension}" icon="ui-icon-check" />
+                                    <p:commandButton value="Abandonner"   onclick="dlgNonSuspension.hide()"/>
+                            </f:facet> 
+
+                        </p:dialog>  
+
+                    </h:panelGroup>
+                </h:form>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

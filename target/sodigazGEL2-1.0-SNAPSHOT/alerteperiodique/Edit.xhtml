@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlerteperiodiqueEditDlg" widgetVar="AlerteperiodiqueEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAlerteperiodiqueTitle}">
+            <h:form id="AlerteperiodiqueEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alerteperiodiqueController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditAlerteperiodiqueLabel_libellealerte}" for="libellealerte" />
+                        <p:selectOneMenu id="libellealerte" value="#{alerteperiodiqueController.selected.libellealerte}"  title="#{bundle.EditAlerteperiodiqueTitle_libellealerte}" required="true" requiredMessage="#{bundle.EditAlerteperiodiqueRequiredMessage_libellealerte}" style="width:125px">
+                            <f:selectItem itemLabel="CCVA" itemValue="CCVA" />
+                            <f:selectItem itemLabel="ASSURANCE" itemValue="ASSURANCE" />                            
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAlerteperiodiqueLabel_datedernieralerte}" for="datedernieralerte" />
+                        <p:calendar id="datedernieralerte" pattern="MM/dd/yyyy" value="#{alerteperiodiqueController.selected.datedernieralerte}" title="#{bundle.EditAlerteperiodiqueTitle_datedernieralerte}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAlerteperiodiqueLabel_echeancealerte}" for="echeancealerte" />
+                        <p:calendar id="echeancealerte" pattern="MM/dd/yyyy" value="#{alerteperiodiqueController.selected.echeancealerte}" title="#{bundle.EditAlerteperiodiqueTitle_echeancealerte}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditAlerteperiodiqueLabel_idcamion}" for="idcamion" />
+                        <p:selectOneMenu id="idcamion" value="#{alerteperiodiqueController.selected.idcamion}"  >
+                            <f:selectItems value="#{camionController.itemsAvailableSelectOne}"
+                                           var="idcamionItem"
+                                           itemLabel="#{idcamionItem.immatriculation}"
+                                           itemValue="#{idcamionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{alerteperiodiqueController.update}" value="#{bundle.Save}" update="display,:AlerteperiodiqueListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlerteperiodiqueEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AlerteperiodiqueEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

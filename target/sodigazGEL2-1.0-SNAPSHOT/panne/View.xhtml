@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PanneViewDlg" widgetVar="PanneViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPanneTitle}">
+            <h:form id="PanneViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{panneController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewPanneLabel_designationpanne}"/>
+                        <h:outputText value="#{panneController.selected.designationpanne}" title="#{bundle.ViewPanneTitle_designationpanne}"/>
+                        <h:outputText value="#{bundle.ViewPanneLabel_dosuspend}"/>
+                        <p:selectBooleanCheckbox value="#{panneController.selected.dosuspend}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewPanneLabel_typepanne}"/>
+                        <h:outputText value="#{panneController.selected.typepanne}" title="#{bundle.ViewPanneTitle_typepanne}"/>
+                        <h:outputText value="#{bundle.ViewPanneLabel_dureedatebutoirjrs}"/>
+                        <h:outputText value="#{panneController.selected.dureedatebutoirjrs}" title="#{bundle.ViewPanneTitle_dureedatebutoirjrs}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PanneViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

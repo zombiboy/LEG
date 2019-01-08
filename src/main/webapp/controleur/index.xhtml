@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Controleur
+            </ui:define>
+            
+            <ui:define name="title">
+                <h:outputText value="#{bundle.ListLivreurTitle}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                     <h2 style="margin-top:0"> Gestion des Controleurs</h2>
+
+                     <h:form id="ControleurListForm">
+                        <p:panel header="#{bundle.ListControleurTitle}">
+                            <p:dataTable id="datalist" value="#{controleurController.items}" var="item"
+                                         selectionMode="single" selection="#{controleurController.selected}"
+                                         paginator="true"
+                                         rowKey="#{item.idcontroleur}"
+                                         rows="10"
+                                         rowsPerPageTemplate="10,20,30,40,50"
+                                         >
+
+                                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListControleurTitle_nomcontroleur}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.nomcontroleur}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListControleurTitle_prenomcontroleur}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.prenomcontroleur}"/>
+                                </p:column>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListControleurTitle_telcontroleur}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.telcontroleur}"/>
+                                </p:column>
+                                <f:facet name="footer">
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{controleurController.prepareCreate}" update=":ControleurCreateForm" oncomplete="PF('ControleurCreateDialog').show()"/>
+                                    </div>
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ControleurViewForm" oncomplete="PF('ControleurViewDialog').show()" disabled="#{empty controleurController.selected}"/>
+                                    </div>
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ControleurEditForm" oncomplete="PF('ControleurEditDialog').show()" disabled="#{empty controleurController.selected}"/>
+                                    </div>
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{controleurController.destroy}" update=":growl,datalist" disabled="#{empty controleurController.selected}"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                    </h:form>
+
+                     <ui:include src="Create.xhtml"/>
+                     <ui:include src="Edit.xhtml"/>
+                     <ui:include src="View.xhtml"/>
+                     
+                     <script type="text/javascript">
+                        function handleSubmit(args) {
+
+                            PF('ControleurCreateDialog').hide();
+                            PF('ControleurEditDialog').hide();
+
+                        }
+                    </script>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

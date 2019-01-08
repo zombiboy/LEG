@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UtilisateurViewDlg" widgetVar="UtilisateurViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUtilisateurTitle}">
+            <h:form id="UtilisateurViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{utilisateurController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_username}"/>
+                        <h:outputText value="#{utilisateurController.selected.username}" title="#{bundle.ViewUtilisateurTitle_username}"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_password}"/>
+                        <h:outputText value="#{utilisateurController.selected.password}" title="#{bundle.ViewUtilisateurTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_email}"/>
+                        <h:outputText value="#{utilisateurController.selected.email}" title="#{bundle.ViewUtilisateurTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_bloquer}"/>
+                        <p:selectBooleanCheckbox value="#{utilisateurController.selected.bloquer}" disabled="true"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_salt}"/>
+                        <h:outputText value="#{utilisateurController.selected.salt}" title="#{bundle.ViewUtilisateurTitle_salt}"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_lastlogin}"/>
+                        <h:outputText value="#{utilisateurController.selected.lastlogin}" title="#{bundle.ViewUtilisateurTitle_lastlogin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_rolename}"/>
+                        <h:outputText value="#{utilisateurController.selected.rolename}" title="#{bundle.ViewUtilisateurTitle_rolename}"/>
+                        <h:outputText value="#{bundle.ViewUtilisateurLabel_idemployer}"/>
+                        <h:outputText value="#{utilisateurController.selected.idemployer}" title="#{bundle.ViewUtilisateurTitle_idemployer}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UtilisateurViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

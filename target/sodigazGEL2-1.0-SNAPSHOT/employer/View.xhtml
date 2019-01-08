@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployerViewDlg" widgetVar="EmployerViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmployerTitle}">
+            <h:form id="EmployerViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employerController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewEmployerLabel_nom}"/>
+                        <h:outputText value="#{employerController.selected.nom}" title="#{bundle.ViewEmployerTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewEmployerLabel_prenom}"/>
+                        <h:outputText value="#{employerController.selected.prenom}" title="#{bundle.ViewEmployerTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewEmployerLabel_telephone}"/>
+                        <h:outputText value="#{employerController.selected.telephone}" title="#{bundle.ViewEmployerTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewEmployerLabel_matricule}"/>
+                        <h:outputText value="#{employerController.selected.matricule}" title="#{bundle.ViewEmployerTitle_matricule}"/>
+                        <h:outputText value="#{bundle.ViewEmployerLabel_idfonctionemployer}"/>
+                        <h:outputText value="#{employerController.selected.idfonctionemployer}" title="#{bundle.ViewEmployerTitle_idfonctionemployer}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmployerViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

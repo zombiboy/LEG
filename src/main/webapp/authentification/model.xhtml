@@ -1,0 +1,253 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    
+    <h:head>
+        <h:outputStylesheet name="style.css" />
+        <h:outputStylesheet name="css/animate.css" />
+        <h:outputStylesheet name="css/animate2.css" />
+        <h:outputStylesheet name="css/layout.css" />
+        <h:outputStylesheet name="css/layout2.css" />
+        <h:outputStylesheet name="css/nanoscroller.css" />
+        <h:outputStylesheet name="css/nanoscroller2.css" />
+        <h:outputStylesheet name="theme.css" />
+        <h:outputStylesheet name="components.css" />
+        <h:outputStylesheet name="fa/font-awesome.css" />
+        
+        
+        <h:outputScript  name = "jquery/jquery.js" />
+        <h:outputScript  name = "jquery/jquery2.js" />
+        <h:outputScript  name = "jquery/jquery-plugins.js" />
+        <h:outputScript  name = "jquery/jquery-plugins2.js" />
+        <h:outputScript  name = "core.js" />
+        <h:outputScript  name = "components.js" />
+        <h:outputScript  name = "components2.js" />
+        
+        <h:outputScript  name = "js/layout.js" />
+        <h:outputScript  name = "js/nanoscroller.js" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+        <title>Sodigaz APC</title>
+        
+     </h:head>
+
+    
+     <body class="main-body menu-layout-static">
+
+        <div class="wrapper">
+
+        <div class="topbar clearfix">
+            <a id="omega-menu-button" href="#">
+                <span class="fa fa-bars"></span>
+            </a>
+            
+            <span class="topbar-title">Dashboard</span>
+            
+            <a id="options-menu-button" href="#">
+                <span class="fa fa-ellipsis-h"></span>
+            </a>
+            
+            <div id="topbar-icons" class="animated">
+                <span class="topbar-search">
+                    <input type="text" placeholder="Search" />
+                    <span class="topbar-search-icon fa fa-search"></span>
+                </span>
+                <a href="#">
+                    <span class="topbar-item-text">Messages</span>
+                    <span class="topbar-icon fa fa-envelope-o animated swing"></span>
+                    <span class="topbar-badge animated rubberBand">5</span>
+                </a>
+                <a href="#">
+                    <span class="topbar-item-text">Settings</span>
+                    <span class="topbar-icon fa fa-gear"></span>
+                </a>
+                <a href="#">
+                    <span class="topbar-item-text">User</span>
+                    <span class="topbar-icon fa fa-user"></span>
+                </a>
+            </div>
+            
+        </div>
+        <form id="menuform" name="menuform" method="post" action="https://www.primefaces.org/omega/dashboard.xhtml;jsessionid=node0enek356dadt6df9lj7zx928h443237.node0" enctype="application/x-www-form-urlencoded">
+        <input type="hidden" name="menuform" value="menuform" />
+
+            <div class="sidebar">
+                <div class="nano">
+                    <div class="nano-content sidebar-scroll-content">
+                        <div class="logo">
+                            <p:graphicImage alt="" name="/images/logo.png" width="113"/>
+                        </div>
+
+                        <div class="profile">
+                            <p:graphicImage alt="" name="/images/profile.png" width="113"/>
+                            <a id="profile-button" href="#">
+                                <span class="username">Peggy Olson</span>
+                                <i class="fa fa-fw fa-cog"></i>
+                            </a>
+                            <ul>
+                                <li><a href="#"><i class="fa fa-fw fa-sliders"></i><span>Account</span></a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-bell"></i><span>Notifications</span><span class="menu-badge">2</span></a></li>
+                                <li><a href="#"><i class="fa fa-fw fa-sign-out"></i><span>Logout</span></a></li>
+                            </ul>
+                        </div>
+
+                        <div class="menu">
+
+                            <ul id="menuform:j_idt18" class="menu-container">
+                                    <li id="menuform:om_dashboard" role="menuitem">
+                                        <a href="dashboard.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-home fa-fw"></i>
+                                        <span>Acceuil</span>
+                                        </a>
+                                    </li>
+                                
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-certificate fa-fw"></i>
+                                            <span>Inspection</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-certificate fa-fw"></i>
+                                            <span>Suspensions</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-certificate fa-fw"></i>
+                                            <span>Suspensions</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-certificate fa-fw"></i>
+                                            <span>Reparations</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_db_landing" role="menuitem">
+                                        <a href="landing.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html">
+                                            <i class="fa fa-certificate fa-fw"></i>
+                                            <span>Alertes</span>
+                                        </a>
+                                    </li>
+
+                                    <li id="menuform:om_default" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i>
+                                        <span>Administration</span><i class="fa fa-fw fa-angle-down"></i></a>
+                                        <ul role="menu">
+                                        <li id="menuform:om_empty" role="menuitem"><a href="empty.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-square-o fa-fw"></i><span>Pannes</span></a>
+                                        </li>
+                                        <li id="menuform:om_login" role="menuitem"><a href="login.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-sign-in fa-fw"></i>
+                                        <span>Livreur</span></a></li>
+                                        <li id="menuform:om_error" role="menuitem"><a href="error.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-exclamation-circle fa-fw"></i>
+                                        <span>Controleur</span></a></li>
+                                        <li id="menuform:om_404" role="menuitem"><a href="404.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-times fa-fw"></i>
+                                        <span>Camion</span></a></li>
+                                
+                                </ul>
+                            </li>
+
+                            <li id="menuform:om_doc" role="menuitem">
+                                <a href="docs.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h443237.html"><i class="fa fa-book fa-fw"></i>
+                                <span>Documentation</span>
+                                </a>
+                            </li>
+                </ul>
+                <script id="menuform:j_idt18_s" type="text/javascript">PrimeFaces.cw("Omega","widget_menuform_j_idt18",{id:"menuform:j_idt18"});</script>
+                        </div>
+                    </div>
+                </div>
+            </div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="7894077782919283152:2597600198985788506" autocomplete="off" />
+        </form>
+
+                    <div class="main">
+            
+        <div class="ui-g ui-fluid dashboard">
+           
+            
+            <div class="ui-g-12 ui-md-6 ui-lg-4">
+                <div id="j_idt22" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt22">
+                    <div id="j_idt22_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Tasks</span></div>
+                        <div id="j_idt22_content" class="ui-panel-content ui-widget-content">
+                        <ul class="task-list">
+                            <li><div id="j_idt24" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt24_input" name="j_idt24_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt24_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt24",{id:"j_idt24"});</script>
+                                <span class="task-name">Sales reports</span><button id="j_idt26" name="j_idt26" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt26_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt26",{id:"j_idt26"});</script>
+                            </li>
+                            <li><div id="j_idt28" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt28_input" name="j_idt28_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt28_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt28",{id:"j_idt28"});</script>
+                                <span class="task-name">Pay the invoices</span><button id="j_idt30" name="j_idt30" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt30_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt30",{id:"j_idt30"});</script>
+                            </li>
+                            <li><div id="j_idt32" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt32_input" name="j_idt32_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt32_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt32",{id:"j_idt32"});</script>
+                                <span class="task-name">Dinner with Tony</span><button id="j_idt34" name="j_idt34" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt34_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt34",{id:"j_idt34"});</script>
+                            </li>
+                            <li><div id="j_idt36" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt36_input" name="j_idt36_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt36_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt36",{id:"j_idt36"});</script>
+                                <span class="task-name">Team meeting</span><button id="j_idt38" name="j_idt38" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt38_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt38",{id:"j_idt38"});</script>
+                            </li>
+                            <li><div id="j_idt40" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt40_input" name="j_idt40_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt40_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt40",{id:"j_idt40"});</script>
+                                <span class="task-name">Plan the new theme</span><button id="j_idt42" name="j_idt42" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt42_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt42",{id:"j_idt42"});</script>
+                            </li>
+                            <li><div id="j_idt44" class="ui-selectbooleancheckbox ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt44_input" name="j_idt44_input" type="checkbox" autocomplete="off" aria-hidden="true" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt44_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt44",{id:"j_idt44"});</script>
+                                <span class="task-name">Client meeting</span><button id="j_idt46" name="j_idt46" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt46_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt46",{id:"j_idt46"});</script>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+            <script id="j_idt22_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt22",{id:"j_idt22"});</script>
+            </div>
+            
+            <div class="ui-g-12 ui-md-6 ui-lg-4"><div id="j_idt49" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="text-align:center;background:#fff;height:100%" data-widget="widget_j_idt49"><div id="j_idt49_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Contact Us</span></div><div id="j_idt49_content" class="ui-panel-content ui-widget-content">
+                    <div class="ui-g">
+                        <div class="ui-g-12"><div id="console" class="ui-selectonemenu ui-widget ui-state-default ui-corner-all" role="combobox" aria-haspopup="true" aria-expanded="false"><div class="ui-helper-hidden-accessible"><input id="console_focus" name="console_focus" type="text" autocomplete="off" aria-expanded="false" /></div><div class="ui-helper-hidden-accessible"><select id="console_input" name="console_input" tabindex="-1" aria-hidden="true"><option value="">Select One</option><option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="Wii U">Wii U</option></select></div><label id="console_label" class="ui-selectonemenu-label ui-inputfield ui-corner-all"></label><div class="ui-selectonemenu-trigger ui-state-default ui-corner-right"><span class="ui-icon ui-icon-triangle-1-s ui-c"></span></div><div id="console_panel" class="ui-selectonemenu-panel ui-widget ui-widget-content ui-corner-all ui-helper-hidden ui-shadow ui-input-overlay"><div class="ui-selectonemenu-items-wrapper" style="max-height:200px"><ul id="console_items" class="ui-selectonemenu-items ui-selectonemenu-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox"><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Select One" tabindex="-1" role="option">Select One</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Xbox One" tabindex="-1" role="option">Xbox One</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="PS4" tabindex="-1" role="option">PS4</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Wii U" tabindex="-1" role="option">Wii U</li></ul></div></div></div><script id="console_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneMenu","widget_console",{id:"console",autoWidth:false});});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt56" name="j_idt56" type="text" placeholder="Name" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt56_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt56",{id:"j_idt56"});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt58" name="j_idt58" type="text" placeholder="Age" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt58_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt58",{id:"j_idt58"});</script>
+                        </div>
+                        <div class="ui-g-12"><textarea id="j_idt60" name="j_idt60" cols="20" rows="3" placeholder="Message" maxlength="2147483647" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all"></textarea><script id="j_idt60_s" type="text/javascript">$(function(){PrimeFaces.cw("InputTextarea","widget_j_idt60",{id:"j_idt60",autoResize:false});});</script>
+                        </div>
+                    </div><button id="j_idt62" name="j_idt62" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span><span class="ui-button-text ui-c">Send</span></button><script id="j_idt62_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt62",{id:"j_idt62"});</script></div></div><script id="j_idt49_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt49",{id:"j_idt49"});</script>
+            </div>
+            
+
+            <div class="ui-g-12 ui-md-6">
+
+                <form id="j_idt75" name="j_idt75" method="post" action="https://www.primefaces.org/omega/dashboard.xhtml;jsessionid=node0enek356dadt6df9lj7zx928h443237.node0" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="j_idt75" value="j_idt75" />
+
+                                    <div class="card">
+                                        <div id="j_idt75:j_idt77" class="ui-datatable ui-widget ui-datatable-reflow"><div class="ui-datatable-header ui-widget-header ui-corner-top">Sales List</div><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="j_idt75:j_idt77_head"><tr role="row"><th id="j_idt75:j_idt77:j_idt79" class="ui-state-default" role="columnheader" aria-label="Id" scope="col"><span class="ui-column-title">Id</span></th><th id="j_idt75:j_idt77:j_idt81" class="ui-state-default" role="columnheader" aria-label="Year" scope="col"><span class="ui-column-title">Year</span></th><th id="j_idt75:j_idt77:j_idt83" class="ui-state-default" role="columnheader" aria-label="Brand" scope="col"><span class="ui-column-title">Brand</span></th><th id="j_idt75:j_idt77:j_idt85" class="ui-state-default" role="columnheader" aria-label="Color" scope="col"><span class="ui-column-title">Color</span></th></tr></thead><tbody id="j_idt75:j_idt77_data" class="ui-datatable-data ui-widget-content" tabindex="0"><tr data-ri="0" data-rk="16c0423e" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">16c0423e</td><td role="gridcell">1963</td><td role="gridcell">Jaguar</td><td role="gridcell">Orange</td></tr><tr data-ri="1" data-rk="888b8087" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">888b8087</td><td role="gridcell">1966</td><td role="gridcell">Volkswagen</td><td role="gridcell">Blue</td></tr><tr data-ri="2" data-rk="85b83173" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">85b83173</td><td role="gridcell">1977</td><td role="gridcell">Ford</td><td role="gridcell">Maroon</td></tr><tr data-ri="3" data-rk="191f024d" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">191f024d</td><td role="gridcell">1970</td><td role="gridcell">Volkswagen</td><td role="gridcell">Maroon</td></tr><tr data-ri="4" data-rk="f9401069" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">f9401069</td><td role="gridcell">1970</td><td role="gridcell">BMW</td><td role="gridcell">Brown</td></tr><tr data-ri="5" data-rk="4748c2c9" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">4748c2c9</td><td role="gridcell">1986</td><td role="gridcell">Renault</td><td role="gridcell">Maroon</td></tr><tr data-ri="6" data-rk="97cab495" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">97cab495</td><td role="gridcell">1981</td><td role="gridcell">Honda</td><td role="gridcell">White</td></tr><tr data-ri="7" data-rk="8fda1189" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">8fda1189</td><td role="gridcell">1997</td><td role="gridcell">Fiat</td><td role="gridcell">Maroon</td></tr><tr data-ri="8" data-rk="7b7346a6" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">7b7346a6</td><td role="gridcell">1962</td><td role="gridcell">Jaguar</td><td role="gridcell">White</td></tr><tr data-ri="9" data-rk="e7c323c0" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">e7c323c0</td><td role="gridcell">1992</td><td role="gridcell">Jaguar</td><td role="gridcell">Red</td></tr></tbody></table></div><input type="hidden" id="j_idt75:j_idt77_selection" name="j_idt75:j_idt77_selection" autocomplete="off" value="" /></div><script id="j_idt75:j_idt77_s" type="text/javascript">$(function(){PrimeFaces.cw("DataTable","widget_j_idt75_j_idt77",{id:"j_idt75:j_idt77",selectionMode:"single",reflow:true,groupColumnIndexes:[]});});</script>   
+                                    </div>
+                                    <input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:20" value="7894077782919283152:2597600198985788506" autocomplete="off" />
+                </form>
+             
+            </div>
+        </div>
+        
+        <div class="footer">
+            <img id="j_idt101" src="javax.faces.resource/images/logo-colored.png.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h44323797ad.png?ln=omega-layout" alt="" width="32" />
+            <span class="footer-text">Le gaz le plus proche de vous</span>
+        </div>
+    </div>
+        <div id="j_idt104" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+            <div id="j_idt104_start" style="display:none"><img id="j_idt105" src="javax.faces.resource/images/preloader.gif.xhtml%3bjsessionid%3dnode0enek356dadt6df9lj7zx928h44323797ad.gif?ln=omega-layout" alt="" style="width: 32px;" />
+            </div>
+            <div id="j_idt104_complete" style="display:none"></div>
+        </div>
+        <script id="j_idt104_s" type="text/javascript">$(function(){PrimeFaces.cw("AjaxStatus","widget_j_idt104",{id:"j_idt104"});});</script>
+    </div>
+    </body>
+
+
+
+</html>

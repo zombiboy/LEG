@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetailinspectionViewDlg" widgetVar="DetailinspectionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDetailinspectionTitle}">
+            <h:form id="DetailinspectionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detailinspectionController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewDetailinspectionLabel_datedelaireparation}"/>
+                        <h:outputText value="#{detailinspectionController.selected.datedelaireparation}" title="#{bundle.ViewDetailinspectionTitle_datedelaireparation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDetailinspectionLabel_commentaire}"/>
+                        <h:outputText value="#{detailinspectionController.selected.commentaire}" title="#{bundle.ViewDetailinspectionTitle_commentaire}"/>
+                        <h:outputText value="#{bundle.ViewDetailinspectionLabel_etatalerte}"/>
+                        <p:selectBooleanCheckbox value="#{detailinspectionController.selected.etatalerte}" disabled="true"/>
+                        
+                        <h:outputText value="#{bundle.ViewDetailinspectionLabel_idpanne}"/>
+                        <h:outputText value="#{detailinspectionController.selected.idpanne}" title="#{bundle.ViewDetailinspectionTitle_idpanne}"/>
+                    </p:panelGrid>
+                    <p:fieldset legend="Detail Inspection" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{detailinspectionController.selected.idinspectioncamion != null}">
+                        
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_datecontrolecamion}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.datecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_datecontrolecamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_heurecontrolecamion}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.heurecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_heurecontrolecamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_compteurcamion}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.compteurcamion}" title="#{bundle.ViewInspectioncamionTitle_compteurcamion}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_commentaire}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.commentaire}" title="#{bundle.ViewInspectioncamionTitle_commentaire}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_idcamion}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.idcamion.immatriculation}" title="#{bundle.ViewInspectioncamionTitle_idcamion}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_idutilisateur}"/>
+                            <h:outputText value="#{detailinspectionController.selected.idinspectioncamion.idutilisateur.username}" title="#{bundle.ViewInspectioncamionTitle_idutilisateur}"/>
+                        </p:panelGrid>
+                    </p:fieldset>  
+                    <p:commandButton value="#{bundle.Close}" onclick="DetailinspectionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

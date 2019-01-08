@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Suspension
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="#{bundle.ListLivreurTitle}"></h:outputText>
+            </ui:define>
+            <ui:define name="content">                      
+            <h2 style="margin-top:0"> Gestion des Suspensions</h2>
+            <h:form id="SuspensioncamionListForm">
+                <p:panel header="#{bundle.ListSuspensioncamionTitle}">
+                    <p:dataTable id="datalist" value="#{suspensioncamionController.items}" var="item"
+                                 selectionMode="single" selection="#{suspensioncamionController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idsuspensioncamion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton createReparButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton createReparButton viewButton editButton deleteButton"/>
+
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSuspensioncamionTitle_datesuspensioncamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datesuspensioncamion}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSuspensioncamionTitle_heuresuspensioncamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.heuresuspensioncamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSuspensioncamionTitle_lieususpensioncamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.lieususpensioncamion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSuspensioncamionTitle_enreparation}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.enreparation}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSuspensioncamionTitle_idinspectioncamion}"/>
+                            </f:facet>                           
+                                                          
+                            <h:outputText value="Camion : "/>
+                            <h:outputText value="#{item.idinspectioncamion.idcamion.immatriculation}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            
+                            <div class="ui-g">
+                                        
+                                             
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="createReparButton" icon="ui-icon-plus"   value="Envoyer En reparation" actionListener="#{suspensioncamionController.prepareCreateRepar}" update=":ReparationcamionCreateForm" oncomplete="PF('ReparationcamionCreateDialog').show()" disabled="#{empty suspensioncamionController.selected or suspensioncamionController.selected.enreparation }"/>
+                                        </div> 
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{suspensioncamionController.prepareCreate}" update=":SuspensioncamionCreateForm" oncomplete="PF('SuspensioncamionCreateDialog').show()" disabled="true"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            
+                                            <p:commandButton process="datalist" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SuspensioncamionViewForm" oncomplete="PF('SuspensioncamionViewDialog').show()" disabled="#{empty suspensioncamionController.selected}"/>
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SuspensioncamionEditForm" oncomplete="PF('SuspensioncamionEditDialog').show()" disabled="true" />
+
+                                        </div>
+                                        <div class="ui-g-3">
+                                            <p:commandButton process="datalist" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{suspensioncamionController.destroy}" update=":growl,datalist" disabled="#{empty suspensioncamionController.selected}"/>
+                                        </div>
+                                    </div>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+            <ui:include src="CreateRepar.xhtml"/>
+            <script type="text/javascript">
+               function handleSubmit(args) {
+
+                   PF('SuspensioncamionCreateDialog').hide();
+                   PF('SuspensioncamionEditDialog').hide();
+
+               }
+           </script>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

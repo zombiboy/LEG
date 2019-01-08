@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListReparationcamionTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ReparationcamionListForm">
+                <p:panel header="#{bundle.ListReparationcamionTitle}">
+                    <p:dataTable id="datalist" value="#{reparationcamionController.items}" var="item"
+                                 selectionMode="single" selection="#{reparationcamionController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idreparationcamion}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_nomgarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nomgarage}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_responsablegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.responsablegarage}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_telgarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telgarage}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_observationgarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.observationgarage}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_estreparer}"/>
+                            </f:facet>
+                            <p:selectBooleanCheckbox value="#{item.estreparer}" disabled="true"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_dateentreeprevuegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateentreeprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_dateentreeexactegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateentreeexactegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieprevuegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datesortieprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieexactegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datesortieexactegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_dateremiseenservice}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateremiseenservice}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_etatreparation}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etatreparation}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_datereparationcamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datereparationcamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_heurereparationcamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.heurereparationcamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_idsuspensioncamion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{reparationcamionController.prepareCreate}" update=":ReparationcamionCreateForm" oncomplete="PF('ReparationcamionCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ReparationcamionViewForm" oncomplete="PF('ReparationcamionViewDialog').show()" disabled="#{empty reparationcamionController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ReparationcamionEditForm" oncomplete="PF('ReparationcamionEditDialog').show()" disabled="#{empty reparationcamionController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{reparationcamionController.destroy}" update=":growl,datalist" disabled="#{empty reparationcamionController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

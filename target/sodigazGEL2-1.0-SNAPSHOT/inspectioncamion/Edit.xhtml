@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="InspectioncamionEditDlg" widgetVar="InspectioncamionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditInspectioncamionTitle}">
+            <h:form id="InspectioncamionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{inspectioncamionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_idinspectioncamion}" for="idinspectioncamion" />
+                        <p:inputText id="idinspectioncamion" value="#{inspectioncamionController.selected.idinspectioncamion}" title="#{bundle.EditInspectioncamionTitle_idinspectioncamion}" required="true" requiredMessage="#{bundle.EditInspectioncamionRequiredMessage_idinspectioncamion}"/>
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_datecontrolecamion}" for="datecontrolecamion" />
+                        <p:calendar id="datecontrolecamion" pattern="MM/dd/yyyy" value="#{inspectioncamionController.selected.datecontrolecamion}" title="#{bundle.EditInspectioncamionTitle_datecontrolecamion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_heurecontrolecamion}" for="heurecontrolecamion" />
+                        <p:calendar id="heurecontrolecamion" pattern="HH:mm:ss" value="#{inspectioncamionController.selected.heurecontrolecamion}" title="#{bundle.EditInspectioncamionTitle_heurecontrolecamion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_compteurcamion}" for="compteurcamion" />
+                        <p:inputText id="compteurcamion" value="#{inspectioncamionController.selected.compteurcamion}" title="#{bundle.EditInspectioncamionTitle_compteurcamion}" />
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_commentaire}" for="commentaire" />
+                        <p:inputText id="commentaire" value="#{inspectioncamionController.selected.commentaire}" title="#{bundle.EditInspectioncamionTitle_commentaire}" />
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_idcamion}" for="idcamion" />
+                        <p:selectOneMenu id="idcamion" value="#{inspectioncamionController.selected.idcamion}" required="true" requiredMessage="#{bundle.EditInspectioncamionRequiredMessage_idcamion}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{camionController.itemsAvailableSelectOne}"
+                                           var="idcamionItem"
+                                           itemValue="#{idcamionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditInspectioncamionLabel_idutilisateur}" for="idutilisateur" />
+                        <p:selectOneMenu id="idutilisateur" value="#{inspectioncamionController.selected.idutilisateur}" required="true" requiredMessage="#{bundle.EditInspectioncamionRequiredMessage_idutilisateur}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{utilisateurController.itemsAvailableSelectOne}"
+                                           var="idutilisateurItem"
+                                           itemValue="#{idutilisateurItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{inspectioncamionController.update}" value="#{bundle.Save}" update="display,:InspectioncamionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'InspectioncamionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="InspectioncamionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

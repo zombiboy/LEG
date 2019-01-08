@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SuspensioncamionViewDlg" widgetVar="SuspensioncamionViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSuspensioncamionTitle}">
+            <h:form id="SuspensioncamionViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{suspensioncamionController.selected != null}">
+                         
+                        <h:outputText value="#{bundle.ViewSuspensioncamionLabel_datesuspensioncamion}"/>
+                        <h:outputText value="#{suspensioncamionController.selected.datesuspensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_datesuspensioncamion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSuspensioncamionLabel_heuresuspensioncamion}"/>
+                        <h:outputText value="#{suspensioncamionController.selected.heuresuspensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_heuresuspensioncamion}">
+                            <f:convertDateTime pattern="HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSuspensioncamionLabel_lieususpensioncamion}"/>
+                        <h:outputText value="#{suspensioncamionController.selected.lieususpensioncamion}" title="#{bundle.ViewSuspensioncamionTitle_lieususpensioncamion}"/>
+                        <h:outputText value="#{bundle.ViewSuspensioncamionLabel_enreparation}"/>
+                        <p:selectBooleanCheckbox value="#{suspensioncamionController.selected.enreparation}" disabled="true"/>
+                        
+                    </p:panelGrid>                    
+                    
+                    <p:fieldset legend="Detail Inspection" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{suspensioncamionController.selected.idinspectioncamion != null}">
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_datecontrolecamion}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.datecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_datecontrolecamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_heurecontrolecamion}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.heurecontrolecamion}" title="#{bundle.ViewInspectioncamionTitle_heurecontrolecamion}">
+                                <f:convertDateTime pattern="HH:mm:ss" />
+                            </h:outputText>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_compteurcamion}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.compteurcamion}" title="#{bundle.ViewInspectioncamionTitle_compteurcamion}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_commentaire}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.commentaire}" title="#{bundle.ViewInspectioncamionTitle_commentaire}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_idcamion}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.idcamion.immatriculation}" title="#{bundle.ViewInspectioncamionTitle_idcamion}"/>
+                            <h:outputText value="#{bundle.ViewInspectioncamionLabel_idutilisateur}"/>
+                            <h:outputText value="#{suspensioncamionController.selected.idinspectioncamion.idutilisateur.username}" title="#{bundle.ViewInspectioncamionTitle_idutilisateur}"/>
+                        </p:panelGrid>
+                    </p:fieldset>   
+                    
+                    
+                    <p:commandButton value="#{bundle.Close}" onclick="SuspensioncamionViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

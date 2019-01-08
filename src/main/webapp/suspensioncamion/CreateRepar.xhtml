@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReparationcamionCreateDlg" widgetVar="ReparationcamionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Envoi au Garage">
+            <h:form id="ReparationcamionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{suspensioncamionController.selectedRepar != null}">
+                        
+                        <p:outputLabel value="Nom Garage" for="nomgarage" />
+                        <p:inputText id="nomgarage" value="#{suspensioncamionController.selectedRepar.nomgarage}" title="#{bundle.CreateReparationcamionTitle_nomgarage}" required="true" requiredMessage="Entrer le Nom du Garage"/>
+                        <p:outputLabel value="Responsable Grg" for="responsablegarage" />
+                        <p:inputText id="responsablegarage" value="#{suspensioncamionController.selectedRepar.responsablegarage}" title="#{bundle.CreateReparationcamionTitle_responsablegarage}" />
+                        <p:outputLabel value="Telephone Grg" for="telgarage" />
+                        <p:inputText id="telgarage" value="#{suspensioncamionController.selectedRepar.telgarage}" title="#{bundle.CreateReparationcamionTitle_telgarage}" required="true" requiredMessage="Entrer contact garage"/>
+                        <p:outputLabel value="Date prevue" for="dateentreeprevuegarage" />
+                        <p:calendar id="dateentreeprevuegarage" pattern="MM/dd/yyyy" value="#{suspensioncamionController.selectedRepar.dateentreeprevuegarage}" title="#{bundle.EditReparationcamionTitle_dateentreeprevuegarage}"  showOn="button"/>
+                        <p:outputLabel value="Date Exacte" for="dateentreeexactegarage" />
+                        <p:calendar id="dateentreeexactegarage" pattern="MM/dd/yyyy" value="#{suspensioncamionController.selectedRepar.dateentreeexactegarage}" title="#{bundle.EditReparationcamionTitle_dateentreeexactegarage}" disabled="true" showOn="button"/>
+              
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{suspensioncamionController.createRepar}" value="#{bundle.Save}"  oncomplete="handleSubmit(args,'ReparationcamionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReparationcamionCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

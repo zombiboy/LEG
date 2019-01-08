@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CircuitcamionEditDlg" widgetVar="CircuitcamionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditCircuitcamionTitle}">
+            <h:form id="CircuitcamionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{circuitcamionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditCircuitcamionLabel_libellecircuit}" for="libellecircuit" />
+                        <p:inputText id="libellecircuit" value="#{circuitcamionController.selected.libellecircuit}" title="#{bundle.EditCircuitcamionTitle_libellecircuit}" required="true" requiredMessage="#{bundle.EditCircuitcamionRequiredMessage_libellecircuit}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{circuitcamionController.update}" value="#{bundle.Save}" update="display,:CircuitcamionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CircuitcamionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CircuitcamionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

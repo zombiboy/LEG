@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:shiro="http://shiro.apache.org/tags"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Acceuil
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="Acceuil"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                 
+                
+                <div class="ui-g-12 ui-md-12">
+                    <div class="card clearfix summary">
+                        <span class="title">Bienvenue </span>
+                        <span class="detail">Choisir dans le Menu</span>
+                     </div>
+                </div>
+                <br/>
+
+                <h:form id="dock">
+                    
+                                        
+                    <p:tabMenu activeIndex="#{param.i}">
+                        <shiro:hasAnyRoles name="maintenancier,admin">
+                            <p:menuitem value="Faire Insection" outcome="/livreur/index" icon="pi pi-star">
+                                <f:param name="i" value="0" />
+                            </p:menuitem>
+                            <p:menuitem value="Suspension" outcome="/suspensioncamion/index" icon="pi pi-briefcase">
+                                <f:param name="i" value="3" />
+                            </p:menuitem>
+                            <p:menuitem value="Reparation" outcome="/reparationcamion/index" icon="pi pi-user">
+                                <f:param name="i" value="4" />
+                            </p:menuitem>
+                        </shiro:hasAnyRoles>
+                        
+                        <p:menuitem value="Etat Garage" outcome="/etat/index" icon="pi pi-search">
+                            <f:param name="i" value="1" />
+                        </p:menuitem>
+                        <p:menuitem value="Camion" outcome="/camion/index" icon="pi pi-file">
+                            <f:param name="i" value="2" />
+                        </p:menuitem>
+                        
+                        <p:menuitem value="Mon Compte" outcome="/utilisateur/Profile" icon="pi pi-user">
+                            <f:param name="i" value="4" />
+                        </p:menuitem>
+                    </p:tabMenu>
+                    
+                </h:form>
+                
+                
+                
+                    
+
+                     
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

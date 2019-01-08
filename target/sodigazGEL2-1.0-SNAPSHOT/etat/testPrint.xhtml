@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:form id="ReparationcamionListForm">
+                        <p:panel header="#{bundle.ListReparationcamionTitle}">
+                            <p:dataTable id="datalist" 
+                                         value="#{reparationcamionController.itemsEnReparation}" 
+                                         var="item"
+                                         widgetVar="reparationsTable" multiViewState="true"
+                         
+                         >
+                                
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Immatriculation"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.immatriculation}"/>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Code"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.codecamion}"/>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Circuit"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.idinspectioncamion.idcamion.idcuircuit.libellecircuit}"/>
+                            
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Pannes"/>
+                            </f:facet>
+                            
+                            <ui:repeat var="detail" value="#{item.idsuspensioncamion.detailsuspensionList}" varStatus="status">
+                                #{detail.idpanne.designationpanne},
+                            </ui:repeat>
+                                                        
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date Suspension"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsuspensioncamion.datesuspensioncamion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListReparationcamionTitle_datesortieprevuegarage}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.datesortieprevuegarage}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                            
+                      </p:dataTable>
+                        </p:panel>
+                    </h:form>
+        
+                    <p:commandButton value="Print" type="button" style="display:block;margin-bottom: 20px">
+                                    <p:printer target="ReparationcamionListForm" />
+                                </p:commandButton>
+    </h:body>
+</html>
+

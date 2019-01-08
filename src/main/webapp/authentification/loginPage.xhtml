@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    
+    <h:head>
+        <h:outputStylesheet name="style.css" />
+        <h:outputStylesheet name="css/animate.css" />
+        <h:outputStylesheet name="css/animate2.css" />
+        <h:outputStylesheet name="css/layout.css" />
+        <h:outputStylesheet name="css/layout2.css" />
+        <h:outputStylesheet name="css/nanoscroller.css" />
+        <h:outputStylesheet name="css/nanoscroller2.css" />
+        <h:outputStylesheet name="theme.css" />
+        <h:outputStylesheet name="components.css" />
+        <h:outputStylesheet name="fa/font-awesome.css" />
+        
+        
+        <h:outputScript  name = "jquery/jquery.js" />
+        <h:outputScript  name = "jquery/jquery2.js" />
+        <h:outputScript  name = "jquery/jquery-plugins.js" />
+        <h:outputScript  name = "jquery/jquery-plugins2.js" />
+        <h:outputScript  name = "core.js" />
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputScript  name = "components.js" />
+        <h:outputScript  name = "components2.js" />
+        
+        <h:outputScript  name = "js/layout.js" />
+        <h:outputScript  name = "js/nanoscroller.js" />
+        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+        <title>Sodigaz APC</title>
+        
+        
+     </h:head>
+
+    
+    
+    <body class="login-body">
+    
+        <div id="login-wrapper">
+             
+            <p:graphicImage  width="150" height="150" name="images/logo_sodigaz2.png" alt=""    />
+             <div id="login-container">
+                 <h:form>
+                     <p:growl id="growl" sticky="true" showDetail="true" life="2000" />
+                    <span class="title">Connexion</span>
+                    
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12">
+                            <p:inputText id="username" value="#{userLoginView.username}" required="true" placeholder="Nom utilisateur" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"/>
+                        </div>
+                        <div class="ui-g-12">
+                            <p:password id="password" value="#{userLoginView.password}" placeholder="Mot de passe" required="true" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all"/>
+                        </div>
+
+                        <div class="ui-g-12">
+                            <p:commandButton  value="Connexion" update="growl" action="#{userLoginView.authentificateTheUser()}"  icon="ui-icon-check" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"  />
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            
+            
+            <div class="login-footer">Le Gaz le plus proche de vous</div>
+        </div>
+    </body>
+
+            
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UtilisateurCreateDlg" widgetVar="UtilisateurCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUtilisateurTitle}">
+            <h:form id="UtilisateurCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{utilisateurController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_username}" for="username" />
+                        <p:inputText id="username" value="#{utilisateurController.selected.username}" title="#{bundle.CreateUtilisateurTitle_username}" required="true" requiredMessage="#{bundle.CreateUtilisateurRequiredMessage_idutilisateur}"/>
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{utilisateurController.selected.password}" title="#{bundle.CreateUtilisateurTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{utilisateurController.selected.email}" title="#{bundle.CreateUtilisateurTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_bloquer}" for="bloquer" />
+                        <p:selectBooleanCheckbox id="bloquer" value="#{utilisateurController.selected.bloquer}" disabled="true" />
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_salt}" for="salt" />
+                        <p:inputText id="salt" value="#{utilisateurController.selected.salt}" title="#{bundle.CreateUtilisateurTitle_salt}" />
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_lastlogin}" for="lastlogin" />
+                        <p:calendar id="lastlogin" pattern="MM/dd/yyyy" value="#{utilisateurController.selected.lastlogin}" title="#{bundle.EditUtilisateurTitle_lastlogin}"  showOn="button" disabled="true"/>
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_rolename}" for="rolename" />
+                        <p:selectOneMenu id="rolename" value="#{utilisateurController.selected.rolename}" title="#{bundle.CreateUtilisateurTitle_rolename}" style="width:125px" >
+                            <f:selectItems value="#{utilisateurController.rolesUser}"  />                                                     
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateUtilisateurLabel_idemployer}" for="idemployer" />
+                        <p:selectOneMenu id="idemployer" value="#{utilisateurController.selected.idemployer}" required="true" requiredMessage="#{bundle.EditUtilisateurRequiredMessage_idemployer}">
+                            <f:selectItems value="#{employerController.itemsAvailableSelectOne}"
+                                           var="idemployerItem"
+                                           itemLabel="#{idemployerItem.nom} #{idemployerItem.telephone}"
+                                           itemValue="#{idemployerItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{utilisateurController.create}" value="#{bundle.Save}" update="display,:UtilisateurListForm:datalist,:growl" oncomplete="handleSubmit(args,'UtilisateurCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UtilisateurCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

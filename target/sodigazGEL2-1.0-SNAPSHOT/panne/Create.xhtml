@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PanneCreateDlg" widgetVar="PanneCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePanneTitle}">
+            <h:form id="PanneCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{panneController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreatePanneLabel_designationpanne}" for="designationpanne" />
+                        <p:inputText id="designationpanne" value="#{panneController.selected.designationpanne}" title="#{bundle.CreatePanneTitle_designationpanne}" required="true" requiredMessage="#{bundle.CreatePanneRequiredMessage_designationpanne}"/>
+                        <p:outputLabel value="#{bundle.CreatePanneLabel_dosuspend}" for="dosuspend" />
+                        <p:selectBooleanCheckbox id="dosuspend" value="#{panneController.selected.dosuspend}" />
+                        <p:outputLabel value="#{bundle.CreatePanneLabel_typepanne}" for="typepanne" />
+                        <p:selectOneMenu  id="typepanne" value="#{panneController.selected.typepanne}" title="#{bundle.CreatePanneTitle_typepanne}" style="width:125px"  >
+                            <f:selectItems value="#{panneController.typesPanneReparations}" />                                 
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePanneLabel_dureedatebutoirjrs}" for="dureedatebutoirjrs" />
+                        <p:inputText id="dureedatebutoirjrs" value="#{panneController.selected.dureedatebutoirjrs}" title="#{bundle.CreatePanneTitle_dureedatebutoirjrs}" required="true" requiredMessage="#{bundle.CreatePanneRequiredMessage_dureedatebutoirjrs}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{panneController.create}" value="#{bundle.Save}" update="display,:PanneListForm:datalist,:growl" oncomplete="handleSubmit(args,'PanneCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PanneCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

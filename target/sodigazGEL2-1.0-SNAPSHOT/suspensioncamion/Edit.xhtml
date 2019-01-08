@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SuspensioncamionEditDlg" widgetVar="SuspensioncamionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSuspensioncamionTitle}">
+            <h:form id="SuspensioncamionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{suspensioncamionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditSuspensioncamionLabel_datesuspensioncamion}" for="datesuspensioncamion" />
+                        <p:calendar id="datesuspensioncamion" pattern="MM/dd/yyyy" value="#{suspensioncamionController.selected.datesuspensioncamion}" title="#{bundle.EditSuspensioncamionTitle_datesuspensioncamion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSuspensioncamionLabel_heuresuspensioncamion}" for="heuresuspensioncamion" />
+                        <p:calendar id="heuresuspensioncamion" pattern="HH:mm:ss" value="#{suspensioncamionController.selected.heuresuspensioncamion}" title="#{bundle.EditSuspensioncamionTitle_heuresuspensioncamion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditSuspensioncamionLabel_lieususpensioncamion}" for="lieususpensioncamion" />
+                        <p:inputText id="lieususpensioncamion" value="#{suspensioncamionController.selected.lieususpensioncamion}" title="#{bundle.EditSuspensioncamionTitle_lieususpensioncamion}" />
+                        <p:outputLabel value="#{bundle.EditSuspensioncamionLabel_enreparation}" for="enreparation" />
+                        <p:selectBooleanCheckbox id="enreparation" value="#{suspensioncamionController.selected.enreparation}" />
+                        <p:outputLabel value="#{bundle.EditSuspensioncamionLabel_idinspectioncamion}" for="idinspectioncamion" />
+                        <p:selectOneMenu id="idinspectioncamion" value="#{suspensioncamionController.selected.idinspectioncamion}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{inspectioncamionController.itemsAvailableSelectOne}"
+                                           var="idinspectioncamionItem"
+                                           itemValue="#{idinspectioncamionItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{suspensioncamionController.update}" value="#{bundle.Save}" update="display,:SuspensioncamionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SuspensioncamionEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SuspensioncamionEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

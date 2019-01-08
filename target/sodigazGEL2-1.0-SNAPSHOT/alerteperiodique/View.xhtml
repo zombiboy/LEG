@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AlerteperiodiqueViewDlg" widgetVar="AlerteperiodiqueViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAlerteperiodiqueTitle}">
+            <h:form id="AlerteperiodiqueViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{alerteperiodiqueController.selected != null}">
+                        
+                        <h:outputText value="#{bundle.ViewAlerteperiodiqueLabel_libellealerte}"/>
+                        <h:outputText value="#{alerteperiodiqueController.selected.libellealerte}" title="#{bundle.ViewAlerteperiodiqueTitle_libellealerte}"/>
+                        <h:outputText value="#{bundle.ViewAlerteperiodiqueLabel_datedernieralerte}"/>
+                        <h:outputText value="#{alerteperiodiqueController.selected.datedernieralerte}" title="#{bundle.ViewAlerteperiodiqueTitle_datedernieralerte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAlerteperiodiqueLabel_echeancealerte}"/>
+                        <h:outputText value="#{alerteperiodiqueController.selected.echeancealerte}" title="#{bundle.ViewAlerteperiodiqueTitle_echeancealerte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        
+                    </p:panelGrid>
+                    <p:fieldset legend="Detail Camion" collapsed="true" toggleable="true" style="margin-bottom:20px">
+                        <p:panelGrid columns="2" rendered="#{alerteperiodiqueController.selected.idcamion != null}">
+                        
+                            <h:outputText value="#{bundle.ViewCamionLabel_immatriculation}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.immatriculation}" title="#{bundle.ViewCamionTitle_immatriculation}"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_proprietairecamion}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.proprietairecamion}" title="#{bundle.ViewCamionTitle_proprietairecamion}"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_compteurcamion}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.compteurcamion}" title="#{bundle.ViewCamionTitle_compteurcamion}"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_estsuspension}"/>
+                            <p:selectBooleanCheckbox value="#{alerteperiodiqueController.selected.idcamion.estsuspension}" disabled="true"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_etatcamion}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.etatcamion}" title="#{bundle.ViewCamionTitle_etatcamion}"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_codecamion}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.codecamion}" title="#{bundle.ViewCamionTitle_codecamion}"/>
+                            <h:outputText value="#{bundle.ViewCamionLabel_idcuircuit}"/>
+                            <h:outputText value="#{alerteperiodiqueController.selected.idcamion.idcuircuit.libellecircuit}" title="#{bundle.ViewCamionTitle_idcuircuit}"/>
+
+                        </p:panelGrid>
+                    </p:fieldset>  
+                    <p:commandButton value="#{bundle.Close}" onclick="AlerteperiodiqueViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

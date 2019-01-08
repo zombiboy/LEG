@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:shiro="http://shiro.apache.org/tags"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:body>
+    	
+    	<ui:composition template="/template/template.xhtml">
+            
+            <ui:define name="topBarTitle">
+                Camion
+            </ui:define>
+            <ui:define name="title">
+                <h:outputText value="Camion"></h:outputText>
+            </ui:define>
+            <ui:define name="content">
+
+                     <h2 style="margin-top:0"> Gestion des Camions</h2>
+
+                     <style type="text/css">
+                        .ui-datatable .ui-datatable-header {
+                            text-align: right !important;
+                        }
+
+                        .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+                            display: none;
+                        }
+                    </style>
+                    
+                     <h:form id="CamionListForm">
+                        <p:panel header="#{bundle.ListCamionTitle}">
+                            <p:dataTable id="datalist" value="#{camionController.items}" var="item"
+                         widgetVar="camionsTable" multiViewState="true"
+                         rows="10" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="10,20,30,40,50,1000"
+                         selectionMode="single" selection="#{camionController.selected}" rowKey="#{item.idcamion}"
+                         emptyMessage="Aucun camion ne correspond au critere rechercher" filteredValue="#{camionController.filteredCamions}">
+
+                            <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                            <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                            <f:facet name="header">
+                                <p:outputPanel>
+                                    <h:outputText value="Rechercher dans tous les champs:" />
+                                    <p:inputText id="globalFilter" onkeyup="PF('camionsTable').filter()" style="width:150px" placeholder="Entrer un mots clé"/>
+                                </p:outputPanel>
+                            </f:facet>
+                            
+                            
+                            <p:column headerText="#{bundle.ListCamionTitle_immatriculation}" filterBy="#{item.immatriculation}" sortBy="#{item.immatriculation}" filterMatchMode="contains">
+                                <h:outputText value="#{item.immatriculation}"/>
+                            </p:column>
+
+                            
+                            
+                            <p:column headerText="#{bundle.ListCamionTitle_proprietairecamion}" filterBy="#{item.proprietairecamion}" sortBy="#{item.proprietairecamion}" filterMatchMode="exact">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('camionsTable').filter()" style="width:100%; box-sizing: border-box;" >
+                                        <f:selectItem itemLabel="Select One" itemValue="#{null}" noSelectionOption="true" />                                         
+                                        <f:selectItems value="#{camionController.proprietairesCamion}" />
+                                    </p:selectOneMenu>
+                                </f:facet>
+                                <h:outputText value="#{item.proprietairecamion}"/>
+                            </p:column>
+
+                            <p:column headerText="#{bundle.ListCamionTitle_compteurcamion}" filterBy="#{item.compteurcamion}" sortBy="#{item.compteurcamion}" filterMatchMode="startsWith">
+                                <h:outputText value="#{item.compteurcamion}"/>
+                            </p:column>
+                            
+                                                       
+                                                       
+                            <p:column headerText="#{bundle.ListCamionTitle_etatcamion}" filterBy="#{item.etatcamion}" sortBy="#{item.etatcamion}" filterMatchMode="in">
+                                <f:facet name="filter">
+                                    <p:selectCheckboxMenu label="#{bundle.ListCamionTitle_etatcamion}" onchange="PF('camionsTable').filter()" style="width:100%; box-sizing: border-box;" scrollHeight="150">                                                                                
+                                        <f:selectItems value="#{camionController.etatsCamion}" />     
+                                    </p:selectCheckboxMenu>
+                                </f:facet>
+                                <h:outputText value="#{item.etatcamion}"/>
+                                
+                            </p:column>
+                            
+                            <p:column headerText="#{bundle.ListCamionTitle_codecamion}" filterBy="#{item.codecamion}" sortBy="#{item.codecamion}" filterMatchMode="startsWith">
+                                <h:outputText value="#{item.codecamion}"/>
+                            </p:column>
+                            
+                            <p:column headerText="#{bundle.ListCamionTitle_idcuircuit}" filterBy="#{item.idcuircuit.libellecircuit}" sortBy="#{item.idcuircuit.libellecircuit}" filterMatchMode="startsWith">
+                                <h:outputText value="#{item.idcuircuit.libellecircuit}"/>
+                            </p:column>
+
+                            <p:column headerText="#{bundle.ListCamionTitle_idlivreur}" filterBy="#{item.idlivreur.nomlivreur}" sortBy="#{item.idlivreur.nomlivreur}" filterMatchMode="startsWith">
+                                <h:outputText value="#{item.idlivreur.nomlivreur}"/>
+                            </p:column>
+                                
+                            
+                                <f:facet name="footer">
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CamionViewForm" oncomplete="PF('CamionViewDialog').show()" disabled="#{empty camionController.selected}"/>
+                                    </div>
+                                    
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{camionController.prepareCreate}" update=":CamionCreateForm" oncomplete="PF('CamionCreateDialog').show()" disabled="#{utilisateurController.isAcces}"/>
+                                    </div>                                    
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist"  id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CamionEditForm" oncomplete="PF('CamionEditDialog').show()" disabled="#{empty camionController.selected or utilisateurController.isAcces }"/>
+
+                                    </div>
+                                    <div class="ui-g-3">
+                                        <p:commandButton process="datalist" id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{camionController.destroy}" update=":growl,datalist" disabled="#{empty camionController.selected or utilisateurController.isAcces}"/>
+                                    </div>
+                                </f:facet>
+                            </p:dataTable>
+                        </p:panel>
+                        <h3>Exporter uniquement les donnees de la Page</h3>
+                        <h:commandLink>
+                            <p:graphicImage name="/images/excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="listecamions" pageOnly="true"/>
+                        </h:commandLink>
+                         <h:commandLink>
+                            <p:graphicImage name="/images/pdf.png" />
+                            <p:dataExporter type="pdf" target="datalist" fileName="listecamions" pageOnly="true" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage name="/images/csv.png" />
+                            <p:dataExporter type="csv" target="datalist" fileName="listecamions" pageOnly="true" />
+                        </h:commandLink>
+
+                        <h:commandLink>
+                            <p:graphicImage name="/images/xml.png" />
+                            <p:dataExporter type="xml" target="datalist" fileName="listecamions" pageOnly="true" />
+                        </h:commandLink>
+                        <h3>Exporter les donnees de tous les Pages</h3>
+                        <h:commandLink>
+                            <p:graphicImage name="/images/excel.png" />
+                            <p:dataExporter type="xls" target="datalist" fileName="listecamions" />
+                        </h:commandLink>
+             
+                    </h:form>
+
+                     <ui:include src="Create.xhtml"/>
+                     <ui:include src="Edit.xhtml"/>
+                     <ui:include src="View.xhtml"/>
+                     
+                     <script type="text/javascript">
+                        function handleSubmit(args) {
+
+                            PF('CamionCreateDialog').hide();
+                            PF('CamionEditDialog').hide();
+
+                        }
+                    </script>
+
+             </ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>
