@@ -86,8 +86,8 @@ public class UserLoginView {
         FacesContext.getCurrentInstance().addMessage(null, message);
     }   
     public String authentificateTheUser() {
-        //if(estValide()) permettre a fixer une date d'expiration
-        if(true)
+        // permettre a fixer une date d'expiration
+        if(estValide())
         {
             FacesMessage message = null;
         Ini ini = new Ini();
@@ -186,13 +186,14 @@ public class UserLoginView {
 
     private boolean estValide() {
          
-        long b=1545751064000L;        
+        //long b=1545751064000L;  01 Juillet 2019 http://www.timestamp.fr     
+        long b=1561992543000L;
         if(b<new DateTime().getMillis()){
-            System.out.println("Perimer");
+            //System.out.println("Perimer");
             return false;
         }
         else{
-            System.out.println("Valide");
+            //System.out.println("Valide");
             return true;
         }
        

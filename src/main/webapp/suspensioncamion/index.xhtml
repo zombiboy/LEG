@@ -84,7 +84,7 @@
                                             <p:commandButton process="datalist" id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SuspensioncamionViewForm" oncomplete="PF('SuspensioncamionViewDialog').show()" disabled="#{empty suspensioncamionController.selected}"/>
                                         </div>
                                         <div class="ui-g-3">
-                                            <p:commandButton process="datalist" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SuspensioncamionEditForm" oncomplete="PF('SuspensioncamionEditDialog').show()" disabled="true" />
+                                            <p:commandButton process="datalist" id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SuspensioncamionEditForm" oncomplete="PF('SuspensioncamionEditDialog').show()" disabled="#{empty suspensioncamionController.selected}" />
 
                                         </div>
                                         <div class="ui-g-3">
